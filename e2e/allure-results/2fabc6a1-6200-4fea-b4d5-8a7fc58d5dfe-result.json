@@ -1,0 +1,96 @@
+{
+  "uuid": "2fabc6a1-6200-4fea-b4d5-8a7fc58d5dfe",
+  "historyId": "3887d0bf5b1e9b7fb015723fcfea7d276170f1d7",
+  "testCaseId": "3887d0bf5b1e9b7fb015723fcfea7d276170f1d7",
+  "fullName": "Home dashboard › Empty states celebrate a finished day",
+  "name": "Empty states celebrate a finished day",
+  "description": "Loads a store where every task and habit is already complete and verifies both celebration empty states on Home.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490216021,
+  "stop": 1792490218153,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Home dashboard"
+    },
+    {
+      "name": "feature",
+      "value": "Home dashboard"
+    },
+    {
+      "name": "story",
+      "value": "Empty states celebrate a finished day"
+    },
+    {
+      "name": "severity",
+      "value": "minor"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.home-dashboard"
+    },
+    {
+      "name": "tag",
+      "value": "home"
+    },
+    {
+      "name": "tag",
+      "value": "empty-state"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Home reports that every task is complete",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490217405,
+      "stop": 1792490217406,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Home reports that every habit is complete",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490217406,
+      "stop": 1792490217407,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — All caught up",
+          "source": "2fabc6a1-6200-4fea-b4d5-8a7fc58d5dfe-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

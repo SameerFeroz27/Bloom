@@ -1,0 +1,124 @@
+{
+  "uuid": "374d0d29-43f6-4a2d-b6b5-373ee75a8806",
+  "historyId": "4343f01779ea9d48789a1bc3f3a938a28f6704e4",
+  "testCaseId": "4343f01779ea9d48789a1bc3f3a938a28f6704e4",
+  "fullName": "Tasks › Search and filter tasks",
+  "name": "Search and filter tasks",
+  "description": "Exercises the Done filter, the All filter and the search box, then clears the search to restore the full list.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490150718,
+  "stop": 1792490155629,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Tasks"
+    },
+    {
+      "name": "feature",
+      "value": "Tasks"
+    },
+    {
+      "name": "story",
+      "value": "Search and filter tasks"
+    },
+    {
+      "name": "severity",
+      "value": "normal"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.tasks"
+    },
+    {
+      "name": "tag",
+      "value": "tasks"
+    },
+    {
+      "name": "tag",
+      "value": "search"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Filter to completed tasks",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490152498,
+      "stop": 1792490152642,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Return to all tasks",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490152642,
+      "stop": 1792490152872,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Search narrows the list",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490152872,
+      "stop": 1792490153840,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Search results",
+          "source": "374d0d29-43f6-4a2d-b6b5-373ee75a8806-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Clear search restores all tasks",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490154623,
+      "stop": 1792490154873,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Search cleared",
+          "source": "374d0d29-43f6-4a2d-b6b5-373ee75a8806-shot-02.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

@@ -1,0 +1,106 @@
+{
+  "uuid": "8b6b7e64-5981-4081-bcf8-5dcdf807e124",
+  "historyId": "5f35f53154db35ac1cea1e50c71fab302431bab1",
+  "testCaseId": "5f35f53154db35ac1cea1e50c71fab302431bab1",
+  "fullName": "App shell & navigation › Home shows the branded dashboard",
+  "name": "Home shows the branded dashboard",
+  "description": "Launches the native app and checks the new bloom logo, greeting, progress rings and the main dashboard sections.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490120750,
+  "stop": 1792490124983,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "App shell & navigation"
+    },
+    {
+      "name": "feature",
+      "value": "App shell & navigation"
+    },
+    {
+      "name": "story",
+      "value": "Home shows the branded dashboard"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.app-shell-navigation"
+    },
+    {
+      "name": "tag",
+      "value": "smoke"
+    },
+    {
+      "name": "tag",
+      "value": "branding"
+    },
+    {
+      "name": "tag",
+      "value": "home"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "The app opens on Home with the new logo and greeting",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490123836,
+      "stop": 1792490123871,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The dashboard shows live progress and all main sections",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490123871,
+      "stop": 1792490123950,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Home dashboard",
+          "source": "8b6b7e64-5981-4081-bcf8-5dcdf807e124-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [
+    {
+      "name": "App logo (new brand mark)",
+      "source": "8b6b7e64-5981-4081-bcf8-5dcdf807e124-app-logo.png",
+      "type": "image/png"
+    }
+  ],
+  "links": []
+}

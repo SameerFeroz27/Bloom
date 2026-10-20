@@ -1,0 +1,103 @@
+{
+  "uuid": "008d18f2-0816-45a3-b6a1-340416bd1c6c",
+  "historyId": "3fc45e40be50cc2c4099d675a92c337ec5da1537",
+  "testCaseId": "3fc45e40be50cc2c4099d675a92c337ec5da1537",
+  "fullName": "Insights › Insights summarize activity and mood",
+  "name": "Insights summarize activity and mood",
+  "description": "Verifies the 14-day totals, the strongest habit card derived from streak history, the activity chart and the mood breakdown.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490192632,
+  "stop": 1792490195618,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Insights"
+    },
+    {
+      "name": "feature",
+      "value": "Insights"
+    },
+    {
+      "name": "story",
+      "value": "Insights summarize activity and mood"
+    },
+    {
+      "name": "severity",
+      "value": "normal"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.insights"
+    },
+    {
+      "name": "tag",
+      "value": "insights"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "The summary header and totals are visible",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490194724,
+      "stop": 1792490194726,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The strongest habit is derived from streak history",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490194726,
+      "stop": 1792490194727,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The activity chart and mood breakdown are visible",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490194727,
+      "stop": 1792490194728,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Insights overview",
+          "source": "008d18f2-0816-45a3-b6a1-340416bd1c6c-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

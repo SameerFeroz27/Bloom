@@ -1,0 +1,118 @@
+{
+  "uuid": "815c52f5-03ea-477c-923e-396c6078a618",
+  "historyId": "bc150bcc462d13895451f0062f45d29b54873bd4",
+  "testCaseId": "bc150bcc462d13895451f0062f45d29b54873bd4",
+  "fullName": "Tasks › Create a task from the add button",
+  "name": "Create a task from the add button",
+  "description": "Creates a work task through the bottom sheet and verifies it appears at the top of the task list with the chosen category and time.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490134275,
+  "stop": 1792490145983,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Tasks"
+    },
+    {
+      "name": "feature",
+      "value": "Tasks"
+    },
+    {
+      "name": "story",
+      "value": "Create a task from the add button"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.tasks"
+    },
+    {
+      "name": "tag",
+      "value": "crud"
+    },
+    {
+      "name": "tag",
+      "value": "tasks"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Open the new task sheet",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490137221,
+      "stop": 1792490137779,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Fill in the task name and choose the Work category",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490137779,
+      "stop": 1792490139091,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Save the task",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490139091,
+      "stop": 1792490140322,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The task is listed with its category and time",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490140322,
+      "stop": 1792490145159,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Task created",
+          "source": "815c52f5-03ea-477c-923e-396c6078a618-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

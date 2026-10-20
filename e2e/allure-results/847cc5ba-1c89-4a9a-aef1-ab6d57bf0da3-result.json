@@ -1,0 +1,139 @@
+{
+  "uuid": "847cc5ba-1c89-4a9a-aef1-ab6d57bf0da3",
+  "historyId": "5f6676c3133a298f63016e4ec3616b28aee55f28",
+  "testCaseId": "5f6676c3133a298f63016e4ec3616b28aee55f28",
+  "fullName": "First run › Fresh install starts with a welcoming empty state",
+  "name": "Fresh install starts with a welcoming empty state",
+  "description": "Confirms a new install has no demo persona or sample content, shows the new gold logo and first actions, and keeps the profile generic.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490218198,
+  "stop": 1792490224296,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "First run"
+    },
+    {
+      "name": "feature",
+      "value": "First run"
+    },
+    {
+      "name": "story",
+      "value": "Fresh install starts with a welcoming empty state"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.first-run"
+    },
+    {
+      "name": "tag",
+      "value": "onboarding"
+    },
+    {
+      "name": "tag",
+      "value": "empty-state"
+    },
+    {
+      "name": "tag",
+      "value": "first-run"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "The new install contains no sample data or demo persona",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490219070,
+      "stop": 1792490219070,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The welcome state shows the gold logo and first actions",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490219070,
+      "stop": 1792490219071,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Welcome empty state",
+          "source": "847cc5ba-1c89-4a9a-aef1-ab6d57bf0da3-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "The task action opens the task sheet",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490219989,
+      "stop": 1792490221603,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The habit action opens the habit sheet",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490221603,
+      "stop": 1792490222954,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The profile is generic, not a demo persona",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490222954,
+      "stop": 1792490223487,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — First run profile",
+          "source": "847cc5ba-1c89-4a9a-aef1-ab6d57bf0da3-shot-02.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

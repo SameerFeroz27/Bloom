@@ -1,0 +1,810 @@
+{
+  "bloom_tests": [
+    {
+      "name": "Home shows the branded dashboard",
+      "suite": "App shell & navigation",
+      "description": "Launches the native app and checks the new bloom logo, greeting, progress rings and the main dashboard sections.",
+      "severity": "critical",
+      "tags": [
+        "smoke",
+        "branding",
+        "home"
+      ],
+      "slug": "app-shell-navigation-home-shows-the-branded-dashboard",
+      "status": "passed",
+      "startedAt": 1792490120750,
+      "steps": [
+        {
+          "name": "The app opens on Home with the new logo and greeting",
+          "status": "passed",
+          "startedAt": 1792490123836,
+          "durationMs": 34,
+          "stoppedAt": 1792490123871
+        },
+        {
+          "name": "The dashboard shows live progress and all main sections",
+          "status": "passed",
+          "startedAt": 1792490123871,
+          "durationMs": 78,
+          "stoppedAt": 1792490123950,
+          "screenshot": "app-shell-navigation-home-shows-the-branded-dashboard--home-dashboard"
+        }
+      ],
+      "screenshots": [
+        "app-shell-navigation-home-shows-the-branded-dashboard--home-dashboard"
+      ],
+      "durationMs": 4232,
+      "stoppedAt": 1792490124983
+    },
+    {
+      "name": "Bottom navigation opens every section",
+      "suite": "App shell & navigation",
+      "description": "Walks through all five tabs and verifies each screen renders its headline and primary content.",
+      "severity": "critical",
+      "tags": [
+        "smoke",
+        "navigation"
+      ],
+      "slug": "app-shell-navigation-bottom-navigation-opens-every-section",
+      "status": "passed",
+      "startedAt": 1792490125053,
+      "steps": [
+        {
+          "name": "Tasks section",
+          "status": "passed",
+          "startedAt": 1792490126386,
+          "durationMs": 1086,
+          "stoppedAt": 1792490127473,
+          "screenshot": "app-shell-navigation-bottom-navigation-opens-every-section--tasks-section"
+        },
+        {
+          "name": "Habits section",
+          "status": "passed",
+          "startedAt": 1792490128365,
+          "durationMs": 470,
+          "stoppedAt": 1792490128836,
+          "screenshot": "app-shell-navigation-bottom-navigation-opens-every-section--habits-section"
+        },
+        {
+          "name": "Journal section",
+          "status": "passed",
+          "startedAt": 1792490129610,
+          "durationMs": 333,
+          "stoppedAt": 1792490129943,
+          "screenshot": "app-shell-navigation-bottom-navigation-opens-every-section--journal-section"
+        },
+        {
+          "name": "Insights section",
+          "status": "passed",
+          "startedAt": 1792490130762,
+          "durationMs": 687,
+          "stoppedAt": 1792490131450,
+          "screenshot": "app-shell-navigation-bottom-navigation-opens-every-section--insights-section"
+        },
+        {
+          "name": "Back to Home",
+          "status": "passed",
+          "startedAt": 1792490132646,
+          "durationMs": 778,
+          "stoppedAt": 1792490133425,
+          "screenshot": "app-shell-navigation-bottom-navigation-opens-every-section--back-home"
+        }
+      ],
+      "screenshots": [
+        "app-shell-navigation-bottom-navigation-opens-every-section--tasks-section",
+        "app-shell-navigation-bottom-navigation-opens-every-section--habits-section",
+        "app-shell-navigation-bottom-navigation-opens-every-section--journal-section",
+        "app-shell-navigation-bottom-navigation-opens-every-section--insights-section",
+        "app-shell-navigation-bottom-navigation-opens-every-section--back-home"
+      ],
+      "durationMs": 9153,
+      "stoppedAt": 1792490134207
+    },
+    {
+      "name": "Create a task from the add button",
+      "suite": "Tasks",
+      "description": "Creates a work task through the bottom sheet and verifies it appears at the top of the task list with the chosen category and time.",
+      "severity": "critical",
+      "tags": [
+        "crud",
+        "tasks"
+      ],
+      "slug": "tasks-create-a-task-from-the-add-button",
+      "status": "passed",
+      "startedAt": 1792490134275,
+      "steps": [
+        {
+          "name": "Open the new task sheet",
+          "status": "passed",
+          "startedAt": 1792490137221,
+          "durationMs": 557,
+          "stoppedAt": 1792490137779
+        },
+        {
+          "name": "Fill in the task name and choose the Work category",
+          "status": "passed",
+          "startedAt": 1792490137779,
+          "durationMs": 1311,
+          "stoppedAt": 1792490139091
+        },
+        {
+          "name": "Save the task",
+          "status": "passed",
+          "startedAt": 1792490139091,
+          "durationMs": 1230,
+          "stoppedAt": 1792490140322
+        },
+        {
+          "name": "The task is listed with its category and time",
+          "status": "passed",
+          "startedAt": 1792490140322,
+          "durationMs": 4836,
+          "stoppedAt": 1792490145159,
+          "screenshot": "tasks-create-a-task-from-the-add-button--task-created"
+        }
+      ],
+      "screenshots": [
+        "tasks-create-a-task-from-the-add-button--task-created"
+      ],
+      "durationMs": 11707,
+      "stoppedAt": 1792490145983
+    },
+    {
+      "name": "Complete a task and update progress",
+      "suite": "Tasks",
+      "description": "Checks a task off, verifies the open/done counters, the Done filter, and that Home removes the completed task.",
+      "severity": "critical",
+      "tags": [
+        "tasks",
+        "progress"
+      ],
+      "slug": "tasks-complete-a-task-and-update-progress",
+      "status": "passed",
+      "startedAt": 1792490146057,
+      "steps": [
+        {
+          "name": "Check off a task",
+          "status": "passed",
+          "startedAt": 1792490148035,
+          "durationMs": 252,
+          "stoppedAt": 1792490148288
+        },
+        {
+          "name": "Open and done counters update",
+          "status": "passed",
+          "startedAt": 1792490148288,
+          "durationMs": 1,
+          "stoppedAt": 1792490148289
+        },
+        {
+          "name": "The Done filter shows the completed task",
+          "status": "passed",
+          "startedAt": 1792490148289,
+          "durationMs": 114,
+          "stoppedAt": 1792490148403,
+          "screenshot": "tasks-complete-a-task-and-update-progress--task-completed"
+        },
+        {
+          "name": "Home no longer shows the completed task",
+          "status": "passed",
+          "startedAt": 1792490149178,
+          "durationMs": 708,
+          "stoppedAt": 1792490149886,
+          "screenshot": "tasks-complete-a-task-and-update-progress--home-after-completion"
+        }
+      ],
+      "screenshots": [
+        "tasks-complete-a-task-and-update-progress--task-completed",
+        "tasks-complete-a-task-and-update-progress--home-after-completion"
+      ],
+      "durationMs": 4608,
+      "stoppedAt": 1792490150666
+    },
+    {
+      "name": "Search and filter tasks",
+      "suite": "Tasks",
+      "description": "Exercises the Done filter, the All filter and the search box, then clears the search to restore the full list.",
+      "severity": "normal",
+      "tags": [
+        "tasks",
+        "search"
+      ],
+      "slug": "tasks-search-and-filter-tasks",
+      "status": "passed",
+      "startedAt": 1792490150718,
+      "steps": [
+        {
+          "name": "Filter to completed tasks",
+          "status": "passed",
+          "startedAt": 1792490152498,
+          "durationMs": 144,
+          "stoppedAt": 1792490152642
+        },
+        {
+          "name": "Return to all tasks",
+          "status": "passed",
+          "startedAt": 1792490152642,
+          "durationMs": 229,
+          "stoppedAt": 1792490152872
+        },
+        {
+          "name": "Search narrows the list",
+          "status": "passed",
+          "startedAt": 1792490152872,
+          "durationMs": 968,
+          "stoppedAt": 1792490153840,
+          "screenshot": "tasks-search-and-filter-tasks--search-results"
+        },
+        {
+          "name": "Clear search restores all tasks",
+          "status": "passed",
+          "startedAt": 1792490154623,
+          "durationMs": 250,
+          "stoppedAt": 1792490154873,
+          "screenshot": "tasks-search-and-filter-tasks--search-cleared"
+        }
+      ],
+      "screenshots": [
+        "tasks-search-and-filter-tasks--search-results",
+        "tasks-search-and-filter-tasks--search-cleared"
+      ],
+      "durationMs": 4910,
+      "stoppedAt": 1792490155629
+    },
+    {
+      "name": "Delete a task and undo it",
+      "suite": "Tasks",
+      "description": "Deletes a task, checks the undo snackbar, and restores the task with the UNDO action.",
+      "severity": "normal",
+      "tags": [
+        "tasks",
+        "undo"
+      ],
+      "slug": "tasks-delete-a-task-and-undo-it",
+      "status": "passed",
+      "startedAt": 1792490155714,
+      "steps": [
+        {
+          "name": "Delete a task",
+          "status": "passed",
+          "startedAt": 1792490157622,
+          "durationMs": 583,
+          "stoppedAt": 1792490158206
+        },
+        {
+          "name": "Undo restores the task",
+          "status": "passed",
+          "startedAt": 1792490158206,
+          "durationMs": 514,
+          "stoppedAt": 1792490158721,
+          "screenshot": "tasks-delete-a-task-and-undo-it--task-restored"
+        }
+      ],
+      "screenshots": [
+        "tasks-delete-a-task-and-undo-it--task-restored"
+      ],
+      "durationMs": 3827,
+      "stoppedAt": 1792490159542
+    },
+    {
+      "name": "Create a breaking habit",
+      "suite": "Habits",
+      "description": "Creates a break habit with a custom icon, verifies the BREAK tag, and checks that the Build/Break filters separate habits correctly.",
+      "severity": "critical",
+      "tags": [
+        "crud",
+        "habits"
+      ],
+      "slug": "habits-create-a-breaking-habit",
+      "status": "passed",
+      "startedAt": 1792490159614,
+      "steps": [
+        {
+          "name": "Open the new habit sheet",
+          "status": "passed",
+          "startedAt": 1792490161445,
+          "durationMs": 572,
+          "stoppedAt": 1792490162018
+        },
+        {
+          "name": "Choose a habit to break and describe it",
+          "status": "passed",
+          "startedAt": 1792490162018,
+          "durationMs": 1004,
+          "stoppedAt": 1792490163023
+        },
+        {
+          "name": "Pick an icon and create the habit",
+          "status": "passed",
+          "startedAt": 1792490163023,
+          "durationMs": 1119,
+          "stoppedAt": 1792490164142
+        },
+        {
+          "name": "The habit appears with its details and BREAK tag",
+          "status": "passed",
+          "startedAt": 1792490164142,
+          "durationMs": 4379,
+          "stoppedAt": 1792490168522,
+          "screenshot": "habits-create-a-breaking-habit--habit-created"
+        },
+        {
+          "name": "Filters separate build and break habits",
+          "status": "passed",
+          "startedAt": 1792490169339,
+          "durationMs": 599,
+          "stoppedAt": 1792490169938,
+          "screenshot": "habits-create-a-breaking-habit--habit-filters"
+        }
+      ],
+      "screenshots": [
+        "habits-create-a-breaking-habit--habit-created",
+        "habits-create-a-breaking-habit--habit-filters"
+      ],
+      "durationMs": 11116,
+      "stoppedAt": 1792490170730
+    },
+    {
+      "name": "Check off a habit and keep the streak",
+      "suite": "Habits",
+      "description": "Checks a habit off today, verifies the streak and best-streak values, and confirms Home reports the higher habit count.",
+      "severity": "critical",
+      "tags": [
+        "habits",
+        "streak"
+      ],
+      "slug": "habits-check-off-a-habit-and-keep-the-streak",
+      "status": "passed",
+      "startedAt": 1792490170793,
+      "steps": [
+        {
+          "name": "Check off the habit for today",
+          "status": "passed",
+          "startedAt": 1792490172702,
+          "durationMs": 262,
+          "stoppedAt": 1792490172965
+        },
+        {
+          "name": "Expanded details show the updated streak",
+          "status": "passed",
+          "startedAt": 1792490172965,
+          "durationMs": 123,
+          "stoppedAt": 1792490173089,
+          "screenshot": "habits-check-off-a-habit-and-keep-the-streak--habit-checked"
+        },
+        {
+          "name": "Home reflects the higher habit count",
+          "status": "passed",
+          "startedAt": 1792490173892,
+          "durationMs": 752,
+          "stoppedAt": 1792490174644,
+          "screenshot": "habits-check-off-a-habit-and-keep-the-streak--home-habit-progress"
+        }
+      ],
+      "screenshots": [
+        "habits-check-off-a-habit-and-keep-the-streak--habit-checked",
+        "habits-check-off-a-habit-and-keep-the-streak--home-habit-progress"
+      ],
+      "durationMs": 4696,
+      "stoppedAt": 1792490175490
+    },
+    {
+      "name": "Delete a habit with undo",
+      "suite": "Habits",
+      "description": "Expands the strongest habit to inspect its streak, deletes it, and restores it from the undo snackbar.",
+      "severity": "normal",
+      "tags": [
+        "habits",
+        "undo"
+      ],
+      "slug": "habits-delete-a-habit-with-undo",
+      "status": "passed",
+      "startedAt": 1792490175538,
+      "steps": [
+        {
+          "name": "Expand the strongest habit",
+          "status": "passed",
+          "startedAt": 1792490177403,
+          "durationMs": 117,
+          "stoppedAt": 1792490177521,
+          "screenshot": "habits-delete-a-habit-with-undo--habit-details"
+        },
+        {
+          "name": "Delete the habit",
+          "status": "passed",
+          "startedAt": 1792490178341,
+          "durationMs": 1145,
+          "stoppedAt": 1792490179487
+        },
+        {
+          "name": "Undo restores the habit",
+          "status": "passed",
+          "startedAt": 1792490179487,
+          "durationMs": 482,
+          "stoppedAt": 1792490179969,
+          "screenshot": "habits-delete-a-habit-with-undo--habit-restored"
+        }
+      ],
+      "screenshots": [
+        "habits-delete-a-habit-with-undo--habit-details",
+        "habits-delete-a-habit-with-undo--habit-restored"
+      ],
+      "durationMs": 5212,
+      "stoppedAt": 1792490180751
+    },
+    {
+      "name": "Save a reflection with a chosen mood",
+      "suite": "Journal",
+      "description": "Writes a reflection, selects the Great mood, saves it, verifies the entry card, then deletes and restores the reflection.",
+      "severity": "critical",
+      "tags": [
+        "journal",
+        "mood",
+        "crud"
+      ],
+      "slug": "journal-save-a-reflection-with-a-chosen-mood",
+      "status": "passed",
+      "startedAt": 1792490180805,
+      "steps": [
+        {
+          "name": "Write a reflection",
+          "status": "passed",
+          "startedAt": 1792490182687,
+          "durationMs": 1002,
+          "stoppedAt": 1792490183690
+        },
+        {
+          "name": "Choose a mood and save the reflection",
+          "status": "passed",
+          "startedAt": 1792490183690,
+          "durationMs": 1370,
+          "stoppedAt": 1792490185061
+        },
+        {
+          "name": "The reflection is stored with its mood",
+          "status": "passed",
+          "startedAt": 1792490185061,
+          "durationMs": 4362,
+          "stoppedAt": 1792490189423,
+          "screenshot": "journal-save-a-reflection-with-a-chosen-mood--journal-reflection"
+        },
+        {
+          "name": "Delete the reflection and undo it",
+          "status": "passed",
+          "startedAt": 1792490190200,
+          "durationMs": 1589,
+          "stoppedAt": 1792490191789,
+          "screenshot": "journal-save-a-reflection-with-a-chosen-mood--reflection-restored"
+        }
+      ],
+      "screenshots": [
+        "journal-save-a-reflection-with-a-chosen-mood--journal-reflection",
+        "journal-save-a-reflection-with-a-chosen-mood--reflection-restored"
+      ],
+      "durationMs": 11734,
+      "stoppedAt": 1792490192540
+    },
+    {
+      "name": "Insights summarize activity and mood",
+      "suite": "Insights",
+      "description": "Verifies the 14-day totals, the strongest habit card derived from streak history, the activity chart and the mood breakdown.",
+      "severity": "normal",
+      "tags": [
+        "insights"
+      ],
+      "slug": "insights-insights-summarize-activity-and-mood",
+      "status": "passed",
+      "startedAt": 1792490192632,
+      "steps": [
+        {
+          "name": "The summary header and totals are visible",
+          "status": "passed",
+          "startedAt": 1792490194724,
+          "durationMs": 1,
+          "stoppedAt": 1792490194726
+        },
+        {
+          "name": "The strongest habit is derived from streak history",
+          "status": "passed",
+          "startedAt": 1792490194726,
+          "durationMs": 1,
+          "stoppedAt": 1792490194727
+        },
+        {
+          "name": "The activity chart and mood breakdown are visible",
+          "status": "passed",
+          "startedAt": 1792490194727,
+          "durationMs": 0,
+          "stoppedAt": 1792490194728,
+          "screenshot": "insights-insights-summarize-activity-and-mood--insights-overview"
+        }
+      ],
+      "screenshots": [
+        "insights-insights-summarize-activity-and-mood--insights-overview"
+      ],
+      "durationMs": 2986,
+      "stoppedAt": 1792490195618
+    },
+    {
+      "name": "Profile shows stats and the dark theme applies",
+      "suite": "Profile & preferences",
+      "description": "Opens the profile sheet, verifies the user stats, switches to the dark theme and checks that the dashboard renders in dark mode.",
+      "severity": "normal",
+      "tags": [
+        "profile",
+        "theme"
+      ],
+      "slug": "profile-preferences-profile-shows-stats-and-the-dark-theme-applies",
+      "status": "passed",
+      "startedAt": 1792490195694,
+      "steps": [
+        {
+          "name": "Open the profile sheet",
+          "status": "passed",
+          "startedAt": 1792490197005,
+          "durationMs": 503,
+          "stoppedAt": 1792490197509,
+          "screenshot": "profile-preferences-profile-shows-stats-and-the-dark-theme-applies--profile-light"
+        },
+        {
+          "name": "Switch to the dark theme",
+          "status": "passed",
+          "startedAt": 1792490198475,
+          "durationMs": 1264,
+          "stoppedAt": 1792490199740,
+          "screenshot": "profile-preferences-profile-shows-stats-and-the-dark-theme-applies--profile-dark"
+        },
+        {
+          "name": "The dark theme reaches the dashboard",
+          "status": "passed",
+          "startedAt": 1792490200657,
+          "durationMs": 262,
+          "stoppedAt": 1792490200920,
+          "screenshot": "profile-preferences-profile-shows-stats-and-the-dark-theme-applies--home-dark"
+        }
+      ],
+      "screenshots": [
+        "profile-preferences-profile-shows-stats-and-the-dark-theme-applies--profile-light",
+        "profile-preferences-profile-shows-stats-and-the-dark-theme-applies--profile-dark",
+        "profile-preferences-profile-shows-stats-and-the-dark-theme-applies--home-dark"
+      ],
+      "durationMs": 6082,
+      "stoppedAt": 1792490201777
+    },
+    {
+      "name": "Load sample data loads the demo content",
+      "suite": "Profile & preferences",
+      "description": "Starts with an empty store, opens Profile, explicitly loads the sample content and verifies the demo tasks and habits appear.",
+      "severity": "minor",
+      "tags": [
+        "profile",
+        "sample-data"
+      ],
+      "slug": "profile-preferences-load-sample-data-loads-the-demo-content",
+      "status": "passed",
+      "startedAt": 1792490201850,
+      "steps": [
+        {
+          "name": "Open the sample-data confirmation",
+          "status": "passed",
+          "startedAt": 1792490202903,
+          "durationMs": 702,
+          "stoppedAt": 1792490203606
+        },
+        {
+          "name": "Confirm loading the sample content",
+          "status": "passed",
+          "startedAt": 1792490203606,
+          "durationMs": 1417,
+          "stoppedAt": 1792490205024,
+          "screenshot": "profile-preferences-load-sample-data-loads-the-demo-content--sample-data-loaded"
+        }
+      ],
+      "screenshots": [
+        "profile-preferences-load-sample-data-loads-the-demo-content--sample-data-loaded"
+      ],
+      "durationMs": 4063,
+      "stoppedAt": 1792490205913
+    },
+    {
+      "name": "Notifications summarize the day",
+      "suite": "Profile & preferences",
+      "description": "Opens the notification sheet and verifies its task, streak and habit summaries, then closes it with Got it.",
+      "severity": "normal",
+      "tags": [
+        "notifications"
+      ],
+      "slug": "profile-preferences-notifications-summarize-the-day",
+      "status": "passed",
+      "startedAt": 1792490205964,
+      "steps": [
+        {
+          "name": "Open notifications",
+          "status": "passed",
+          "startedAt": 1792490207286,
+          "durationMs": 519,
+          "stoppedAt": 1792490207805,
+          "screenshot": "profile-preferences-notifications-summarize-the-day--daily-summary"
+        },
+        {
+          "name": "Close the sheet",
+          "status": "passed",
+          "startedAt": 1792490208627,
+          "durationMs": 492,
+          "stoppedAt": 1792490209119
+        }
+      ],
+      "screenshots": [
+        "profile-preferences-notifications-summarize-the-day--daily-summary"
+      ],
+      "durationMs": 3155,
+      "stoppedAt": 1792490209119
+    },
+    {
+      "name": "Completing a task advances the focus list",
+      "suite": "Home dashboard",
+      "description": "Seeds four open tasks, completes the first one on Home and verifies that the fourth task moves into the focus list.",
+      "severity": "critical",
+      "tags": [
+        "home",
+        "tasks"
+      ],
+      "slug": "home-dashboard-completing-a-task-advances-the-focus-list",
+      "status": "passed",
+      "startedAt": 1792490209176,
+      "steps": [
+        {
+          "name": "Home shows the first three open tasks",
+          "status": "passed",
+          "startedAt": 1792490210152,
+          "durationMs": 1,
+          "stoppedAt": 1792490210154
+        },
+        {
+          "name": "Completing the first task pulls the next one up",
+          "status": "passed",
+          "startedAt": 1792490210154,
+          "durationMs": 1103,
+          "stoppedAt": 1792490211257,
+          "screenshot": "home-dashboard-completing-a-task-advances-the-focus-list--focus-list-advanced"
+        }
+      ],
+      "screenshots": [
+        "home-dashboard-completing-a-task-advances-the-focus-list--focus-list-advanced"
+      ],
+      "durationMs": 2937,
+      "stoppedAt": 1792490212114
+    },
+    {
+      "name": "Mood check-in is remembered across screens",
+      "suite": "Home dashboard",
+      "description": "Selects the Amazing mood on Home, verifies it is saved, and checks that the Journal opens with the same mood selected.",
+      "severity": "normal",
+      "tags": [
+        "home",
+        "mood"
+      ],
+      "slug": "home-dashboard-mood-check-in-is-remembered-across-screens",
+      "status": "passed",
+      "startedAt": 1792490212164,
+      "steps": [
+        {
+          "name": "Pick Amazing on Home",
+          "status": "passed",
+          "startedAt": 1792490213485,
+          "durationMs": 369,
+          "stoppedAt": 1792490213855,
+          "screenshot": "home-dashboard-mood-check-in-is-remembered-across-screens--mood-selected"
+        },
+        {
+          "name": "The Journal starts from the same mood",
+          "status": "passed",
+          "startedAt": 1792490214643,
+          "durationMs": 576,
+          "stoppedAt": 1792490215220,
+          "screenshot": "home-dashboard-mood-check-in-is-remembered-across-screens--journal-mood-prefilled"
+        }
+      ],
+      "screenshots": [
+        "home-dashboard-mood-check-in-is-remembered-across-screens--mood-selected",
+        "home-dashboard-mood-check-in-is-remembered-across-screens--journal-mood-prefilled"
+      ],
+      "durationMs": 3813,
+      "stoppedAt": 1792490215978
+    },
+    {
+      "name": "Empty states celebrate a finished day",
+      "suite": "Home dashboard",
+      "description": "Loads a store where every task and habit is already complete and verifies both celebration empty states on Home.",
+      "severity": "minor",
+      "tags": [
+        "home",
+        "empty-state"
+      ],
+      "slug": "home-dashboard-empty-states-celebrate-a-finished-day",
+      "status": "passed",
+      "startedAt": 1792490216021,
+      "steps": [
+        {
+          "name": "Home reports that every task is complete",
+          "status": "passed",
+          "startedAt": 1792490217405,
+          "durationMs": 0,
+          "stoppedAt": 1792490217406
+        },
+        {
+          "name": "Home reports that every habit is complete",
+          "status": "passed",
+          "startedAt": 1792490217406,
+          "durationMs": 0,
+          "stoppedAt": 1792490217407,
+          "screenshot": "home-dashboard-empty-states-celebrate-a-finished-day--all-caught-up"
+        }
+      ],
+      "screenshots": [
+        "home-dashboard-empty-states-celebrate-a-finished-day--all-caught-up"
+      ],
+      "durationMs": 2132,
+      "stoppedAt": 1792490218153
+    },
+    {
+      "name": "Fresh install starts with a welcoming empty state",
+      "suite": "First run",
+      "description": "Confirms a new install has no demo persona or sample content, shows the new gold logo and first actions, and keeps the profile generic.",
+      "severity": "critical",
+      "tags": [
+        "onboarding",
+        "empty-state",
+        "first-run"
+      ],
+      "slug": "first-run-fresh-install-starts-with-a-welcoming-empty-state",
+      "status": "passed",
+      "startedAt": 1792490218198,
+      "steps": [
+        {
+          "name": "The new install contains no sample data or demo persona",
+          "status": "passed",
+          "startedAt": 1792490219070,
+          "durationMs": 0,
+          "stoppedAt": 1792490219070
+        },
+        {
+          "name": "The welcome state shows the gold logo and first actions",
+          "status": "passed",
+          "startedAt": 1792490219070,
+          "durationMs": 0,
+          "stoppedAt": 1792490219071,
+          "screenshot": "first-run-fresh-install-starts-with-a-welcoming-empty-state--welcome-empty-state"
+        },
+        {
+          "name": "The task action opens the task sheet",
+          "status": "passed",
+          "startedAt": 1792490219989,
+          "durationMs": 1613,
+          "stoppedAt": 1792490221603
+        },
+        {
+          "name": "The habit action opens the habit sheet",
+          "status": "passed",
+          "startedAt": 1792490221603,
+          "durationMs": 1351,
+          "stoppedAt": 1792490222954
+        },
+        {
+          "name": "The profile is generic, not a demo persona",
+          "status": "passed",
+          "startedAt": 1792490222954,
+          "durationMs": 532,
+          "stoppedAt": 1792490223487,
+          "screenshot": "first-run-fresh-install-starts-with-a-welcoming-empty-state--first-run-profile"
+        }
+      ],
+      "screenshots": [
+        "first-run-fresh-install-starts-with-a-welcoming-empty-state--welcome-empty-state",
+        "first-run-fresh-install-starts-with-a-welcoming-empty-state--first-run-profile"
+      ],
+      "durationMs": 6097,
+      "stoppedAt": 1792490224296
+    }
+  ]
+}

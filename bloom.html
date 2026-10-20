@@ -1,0 +1,2447 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>bloom. — single-file prototype</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;600;650;700;750;800&display=swap');
+
+/* ============================================================
+   bloom. — Material 3 Android prototype
+   ============================================================ */
+
+:root {
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Manrope', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
+  background: #e7ebe2;
+  color: #1b2118;
+  font-size: 14px;
+}
+
+button, input, textarea { font: inherit; color: inherit; }
+button { border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:disabled { cursor: default; opacity: .4; }
+button, a { transition: background .18s ease, color .18s ease, transform .15s ease, box-shadow .18s ease; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, [role='switch']:focus-visible, [role='radio']:focus-visible {
+  outline: 3px solid #89b9a0;
+  outline-offset: 3px;
+}
+h1, h2, h3, p, ul, ol, li { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+svg { flex-shrink: 0; }
+
+/* ---------- Material 3 tonal palette (light) ---------- */
+
+.device {
+  --primary: #3a6b4e;
+  --on-primary: #ffffff;
+  --primary-container: #bcf0c6;
+  --on-primary-container: #00210d;
+  --secondary: #52634f;
+  --secondary-container: #d5e8cf;
+  --on-secondary-container: #101f10;
+  --tertiary: #38656a;
+  --surface: #f7faf2;
+  --surface-container: #ffffff;
+  --surface-container-high: #edf1e8;
+  --surface-container-low: #f2f5ec;
+  --on-surface: #1b2118;
+  --on-surface-variant: #43483f;
+  --outline: #c3c8bc;
+  --outline-soft: #e2e6da;
+  --error: #ba1a1a;
+  --on-error: #fff;
+  --scrim: rgba(16, 24, 16, 0.42);
+  --shadow-1: 0 1px 2px rgba(27, 33, 24, 0.08), 0 1px 3px rgba(27, 33, 24, 0.06);
+  --shadow-2: 0 4px 12px rgba(27, 33, 24, 0.1), 0 2px 4px rgba(27, 33, 24, 0.06);
+  --shadow-3: 0 12px 32px rgba(27, 33, 24, 0.16);
+  --ring-track: #e3e8db;
+  --snackbar-bg: #2f3429;
+  --snackbar-fg: #edf1e8;
+
+  --tone-green-bg: #dfe9d3;  --tone-green-fg: #37592b;
+  --tone-sky-bg: #d9e9f8;    --tone-sky-fg: #2f5c85;
+  --tone-peach-bg: #f8e4c8;  --tone-peach-fg: #7d5527;
+  --tone-lilac-bg: #e7e0f6;  --tone-lilac-fg: #554a7e;
+  --tone-rose-bg: #f8dade;   --tone-rose-fg: #8a3f4b;
+  --tone-sand-bg: #eee3cd;   --tone-sand-fg: #6f5d3a;
+}
+
+.device.dark {
+  --primary: #a1d4ab;
+  --on-primary: #07381a;
+  --primary-container: #235234;
+  --on-primary-container: #bcf0c6;
+  --secondary: #b9ccb3;
+  --secondary-container: #3a4b38;
+  --on-secondary-container: #d5e8cf;
+  --tertiary: #a2ced3;
+  --surface: #11140f;
+  --surface-container: #1a1e18;
+  --surface-container-high: #23271f;
+  --surface-container-low: #1e221b;
+  --on-surface: #e2e3dc;
+  --on-surface-variant: #c3c8bc;
+  --outline: #8d9287;
+  --outline-soft: #33372f;
+  --error: #ffb4ab;
+  --scrim: rgba(0, 0, 0, 0.55);
+  --ring-track: #33372f;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-3: 0 12px 32px rgba(0, 0, 0, 0.55);
+
+  --tone-green-bg: #2c4524;  --tone-green-fg: #b6d7a6;
+  --tone-sky-bg: #1f3a54;    --tone-sky-fg: #b0d4f2;
+  --tone-peach-bg: #55401f;  --tone-peach-fg: #f4cf96;
+  --tone-lilac-bg: #3f365f;  --tone-lilac-fg: #d4c8f4;
+  --tone-rose-bg: #57303a;   --tone-rose-fg: #f4bcc6;
+  --tone-sand-bg: #4d4128;   --tone-sand-fg: #e8d5ad;
+}
+
+/* ---------- Device stage & frame ---------- */
+
+.device-stage {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 26px 16px;
+  background:
+    radial-gradient(1200px 700px at 50% -10%, #f2f5ec 0%, transparent 60%),
+    radial-gradient(900px 600px at 110% 110%, #e4ecdc 0%, transparent 55%),
+    #e7ebe2;
+}
+.device.dark-stage { background: #10130e; }
+
+.device {
+  position: relative;
+  width: min(393px, 100vw - 40px, calc((100dvh - 130px) * 0.462));
+  height: min(852px, 100dvh - 120px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 46px;
+  border: 10px solid #171a15;
+  box-shadow:
+    0 0 0 1.5px #3a4136,
+    0 0 0 4px #22261f,
+    0 30px 70px rgba(24, 34, 24, 0.28);
+  background: var(--surface);
+  color: var(--on-surface);
+  user-select: none;
+}
+
+.device-caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(393px, 100vw - 40px, calc((100dvh - 130px) * 0.462));
+  color: #6d7a67;
+}
+.device-caption span:first-child { font-weight: 650; font-size: 13px; color: #4e5c48; }
+.device-caption span:last-child { font-size: 8px; letter-spacing: 1.6px; }
+
+@media (max-width: 540px) {
+  .device-stage { padding: 0; background: var(--surface, #f7faf2); }
+  .device {
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .device-caption { display: none; }
+}
+
+/* ---------- Status bar & system nav ---------- */
+
+.status-bar {
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 26px;
+  position: relative;
+  z-index: 5;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+.camera-cutout {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #0d100c;
+  box-shadow: inset 0 0 0 3px #1c211a, inset 0 0 0 4.5px #2a3128, 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+.status-indicators { display: flex; align-items: center; gap: 5px; }
+.battery { display: flex; align-items: center; gap: 1.5px; }
+.battery-body {
+  width: 21px;
+  height: 11px;
+  border: 1.4px solid currentColor;
+  border-radius: 3px;
+  padding: 1.5px;
+  opacity: 0.95;
+}
+.battery-body i { display: block; height: 100%; background: currentColor; border-radius: 1px; }
+.battery-cap { width: 1.6px; height: 5px; background: currentColor; border-radius: 0 1px 1px 0; opacity: 0.95; }
+
+.system-nav {
+  height: 26px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+}
+.sys-pill { width: 112px; height: 4px; border-radius: 4px; background: var(--on-surface-variant); opacity: 0.85; }
+
+/* ---------- App body layout ---------- */
+
+.app-body { flex: 1; min-height: 0; display: flex; flex-direction: column; position: relative; }
+
+.top-bar {
+  flex-shrink: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 16px;
+  gap: 10px;
+}
+.top-bar-left { display: flex; align-items: center; gap: 11px; min-width: 0; }
+.top-bar-title { display: flex; flex-direction: column; line-height: 1.12; min-width: 0; }
+.top-bar-title strong { font-family: var(--font-display); font-size: 18px; font-weight: 800; letter-spacing: -0.5px; color: var(--on-surface); }
+.top-bar-title span { font-size: 10px; color: var(--on-surface-variant); letter-spacing: 0.4px; }
+.top-bar-actions { display: flex; align-items: center; gap: 6px; }
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: 12px;
+  transform: rotate(-6deg);
+  flex-shrink: 0;
+}
+.brand-mark svg { transform: rotate(6deg); }
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  font-weight: 650;
+  font-size: 14px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.avatar.big { width: 64px; height: 64px; font-size: 24px; border-radius: 24px; }
+
+.scroller {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 2px 16px 26px;
+  scrollbar-width: none;
+  animation: screen-in 0.28s cubic-bezier(0.2, 0, 0, 1);
+}
+.scroller::-webkit-scrollbar { display: none; }
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Bottom navigation ---------- */
+
+.nav-bar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  padding: 10px 6px max(12px, env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--surface-container) 88%, transparent);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--outline-soft);
+  z-index: 30;
+}
+.nav-bar button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 0;
+  color: var(--on-surface-variant);
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+.nav-pill {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 32px;
+  border-radius: 16px;
+  transition: background 0.22s cubic-bezier(0.2, 0, 0, 1), color 0.2s;
+}
+.nav-bar button.active { color: var(--on-secondary-container); }
+.nav-bar button.active .nav-pill { background: var(--secondary-container); color: var(--primary); }
+.nav-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1px; }
+
+/* ---------- FAB ---------- */
+
+.fab-wrap { position: absolute; right: 18px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 35; }
+.fab {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-2);
+  position: relative;
+  overflow: hidden;
+}
+.fab:hover { box-shadow: var(--shadow-3); }
+.fab:active { transform: scale(0.94); }
+
+/* ---------- Ripple ---------- */
+
+.ink {
+  position: absolute;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.16;
+  transform: scale(0);
+  animation: ink-spread 0.55s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ink-spread {
+  to { transform: scale(1); opacity: 0; }
+}
+
+/* ---------- Screens & cards ---------- */
+
+.screen { display: flex; flex-direction: column; gap: 14px; padding-bottom: 10px; }
+
+.card {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-soft);
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: var(--shadow-1);
+}
+.device.dark .card { box-shadow: none; }
+
+.card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.card-head h2 { font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
+.card-head p { font-size: 11.5px; color: var(--on-surface-variant); margin-top: 3px; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--on-surface-variant);
+}
+.eyebrow i { width: 5px; height: 5px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
+
+.page-head h1 { font-family: var(--font-display); font-size: 27px; font-weight: 750; letter-spacing: -0.9px; line-height: 1.25; margin: 8px 0 6px; }
+.page-head p { font-size: 12.5px; color: var(--on-surface-variant); line-height: 1.6; }
+.page-head { padding: 4px 4px 2px; }
+
+/* ---------- Hero ---------- */
+
+.hero {
+  background:
+    radial-gradient(340px 200px at 90% -20%, var(--primary-container) 0%, transparent 70%),
+    radial-gradient(300px 220px at -10% 110%, var(--secondary-container) 0%, transparent 65%),
+    var(--surface-container);
+  border: 1px solid var(--outline-soft);
+  padding: 20px 18px 16px;
+}
+.hero-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; }
+.hero-date { font-size: 10.5px; color: var(--on-surface-variant); white-space: nowrap; }
+.hero h1 { font-family: var(--font-display); font-size: 24px; font-weight: 750; letter-spacing: -0.8px; line-height: 1.3; margin-bottom: 16px; }
+.hero-rings { display: flex; align-items: center; gap: 16px; }
+
+.ring { position: relative; flex-shrink: 0; }
+.ring-arc { animation: none; }
+.ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+.ring-center strong { font-family: var(--font-display); font-size: 22px; font-weight: 750; color: var(--primary); letter-spacing: -0.5px; }
+.ring-center span { font-size: 9px; color: var(--on-surface-variant); }
+
+.hero-stats { display: flex; flex-direction: column; gap: 12px; min-width: 0; flex: 1; }
+.hero-stats li { display: flex; align-items: center; gap: 10px; color: var(--primary); }
+.hero-stats li > div { display: flex; flex-direction: column; min-width: 0; }
+.hero-stats strong { font-family: var(--font-display); font-size: 14.5px; font-weight: 700; color: var(--on-surface); }
+.hero-stats span { font-size: 10.5px; color: var(--on-surface-variant); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- Tasks ---------- */
+
+.task-list { display: flex; flex-direction: column; }
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--outline-soft);
+}
+.task-row:last-child { border-bottom: 0; padding-bottom: 4px; }
+.task-row:first-child { padding-top: 6px; }
+
+.checkbox {
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  border: 2px solid var(--outline);
+  display: grid;
+  place-items: center;
+  color: transparent;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+.checkbox:active { transform: scale(0.88); }
+.task-row.done .checkbox { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+
+.task-info { flex: 1; min-width: 0; }
+.task-title {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  transition: color 0.2s;
+}
+.task-row.done .task-title { text-decoration: line-through; color: var(--on-surface-variant); }
+.task-meta { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+
+.cat {
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.6px;
+  border-radius: 6px;
+  padding: 3px 7px;
+  background: var(--surface-container-high);
+  color: var(--on-surface-variant);
+}
+.cat-personal { background: #ece6f6; color: #66558b; }
+.cat-work { background: #ddebf9; color: #41678e; }
+.cat-wellness { background: #e0edda; color: #4d7440; }
+.device.dark .cat-personal { background: #3b3352; color: #cabef0; }
+.device.dark .cat-work { background: #294258; color: #b3d2ee; }
+.device.dark .cat-wellness { background: #2e4327; color: #b6d6a8; }
+
+.task-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  color: var(--on-surface-variant);
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--on-surface-variant);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.icon-btn:hover { background: color-mix(in srgb, var(--on-surface) 8%, transparent); }
+.icon-btn.ghost { width: 34px; height: 34px; color: var(--outline); }
+.icon-btn.ghost:hover { color: var(--error); background: color-mix(in srgb, var(--error) 10%, transparent); }
+.icon-btn .dot {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--surface);
+}
+
+/* ---------- Habits ---------- */
+
+.habit-list { display: flex; flex-direction: column; }
+.habit-row { display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--outline-soft); }
+.habit-row:last-child { border-bottom: 0; padding-bottom: 4px; }
+.habit-row:first-child { padding-top: 6px; }
+.habit-row.detailed { flex-direction: column; align-items: stretch; gap: 0; }
+.habit-main { display: flex; align-items: center; gap: 12px; padding: 4px 0 10px; }
+
+.icon-tile {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+.tone-green { background: var(--tone-green-bg); color: var(--tone-green-fg); }
+.tone-sky { background: var(--tone-sky-bg); color: var(--tone-sky-fg); }
+.tone-peach { background: var(--tone-peach-bg); color: var(--tone-peach-fg); }
+.tone-lilac { background: var(--tone-lilac-bg); color: var(--tone-lilac-fg); }
+.tone-rose { background: var(--tone-rose-bg); color: var(--tone-rose-fg); }
+.tone-sand { background: var(--tone-sand-bg); color: var(--tone-sand-fg); }
+
+.habit-info { flex: 1; min-width: 0; text-align: left; padding: 0; position: relative; overflow: hidden; border-radius: 10px; }
+.habit-info strong { display: flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; letter-spacing: -0.1px; overflow-wrap: anywhere; }
+.habit-info small { display: block; font-size: 11px; color: var(--on-surface-variant); margin-top: 3px; line-height: 1.4; }
+
+.break-tag {
+  font-style: normal;
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  background: color-mix(in srgb, var(--error) 14%, transparent);
+  color: var(--error);
+  padding: 2.5px 5px;
+  border-radius: 4px;
+}
+
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 650;
+  color: #b07a3c;
+  flex-shrink: 0;
+}
+.device.dark .streak-badge { color: #e5b375; }
+
+.habit-check {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--outline);
+  color: var(--on-surface-variant);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.habit-check:active { transform: scale(0.9); }
+.habit-check.checked { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+
+.habit-detail { padding: 10px 0 12px; border-top: 1px dashed var(--outline-soft); animation: screen-in 0.22s ease; }
+.detail-stats { display: flex; gap: 14px; margin-bottom: 10px; }
+.detail-stats span { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--on-surface-variant); font-weight: 600; }
+
+.week-dots { display: inline-flex; gap: 5px; align-items: center; }
+.week-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface-container-high);
+  border: 1.5px solid var(--outline);
+}
+.week-dots i.on { background: var(--primary); border-color: var(--primary); }
+
+.detail-actions { display: flex; justify-content: flex-end; margin-top: 10px; }
+
+/* ---------- Mood ---------- */
+
+.mood-card .moods { display: flex; justify-content: space-between; gap: 6px; margin-top: 14px; }
+.moods button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 4px 8px;
+  border-radius: 16px;
+  color: var(--on-surface-variant);
+  opacity: 0.65;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.2s, background 0.2s;
+}
+.moods button.chosen { opacity: 1; background: var(--secondary-container); color: var(--on-secondary-container); }
+.moods button span { font-size: 9.5px; font-weight: 650; }
+
+.mini-moods { display: flex; gap: 4px; }
+.mini-moods button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--on-surface-variant);
+  opacity: 0.6;
+  position: relative;
+  overflow: hidden;
+}
+.mini-moods button.chosen { opacity: 1; background: var(--secondary-container); color: var(--on-secondary-container); }
+
+/* ---------- Week strip ---------- */
+
+.week-strip { display: flex; gap: 8px; margin-top: 14px; }
+.week-cell { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.week-bar-wrap { height: 46px; display: flex; align-items: flex-end; }
+.week-bar { display: block; width: 14px; border-radius: 7px; background: linear-gradient(180deg, var(--primary) 0%, var(--primary-container) 100%); transition: height 0.5s cubic-bezier(0.2, 0, 0, 1); }
+.week-day { font-size: 9.5px; color: var(--on-surface-variant); font-weight: 600; }
+.week-cell strong { font-family: var(--font-display); font-size: 13px; font-weight: 650; color: var(--on-surface-variant); padding: 2px 8px; border-radius: 9px; }
+.week-cell strong.today { background: var(--primary); color: var(--on-primary); }
+
+/* ---------- Banner CTA ---------- */
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 16px;
+  border-radius: 20px;
+  border: 1.5px dashed var(--outline);
+  background: color-mix(in srgb, var(--surface-container) 55%, transparent);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  color: var(--on-surface);
+}
+.banner:active { transform: scale(0.985); }
+.banner-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  flex-shrink: 0;
+}
+.banner > span:not(.banner-icon) { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.banner strong { font-size: 13px; font-weight: 650; }
+.banner > span:not(.banner-icon) > span { font-size: 11px; color: var(--on-surface-variant); }
+.banner > svg { color: var(--on-surface-variant); }
+
+/* ---------- Search ---------- */
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface-container-high);
+  border-radius: 16px;
+  padding: 0 14px;
+  height: 50px;
+  color: var(--on-surface-variant);
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.search-field:focus-within { border-color: var(--primary); }
+.search-field input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font-size: 14px; color: var(--on-surface); }
+.search-field input::placeholder { color: var(--on-surface-variant); opacity: 0.7; }
+.search-field .icon-btn { width: 28px; height: 28px; }
+
+/* ---------- Segmented tabs ---------- */
+
+.segmented {
+  display: flex;
+  gap: 4px;
+  background: var(--surface-container-high);
+  border-radius: 999px;
+  padding: 4px;
+}
+.segmented button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 38px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  position: relative;
+  overflow: hidden;
+}
+.segmented button.active {
+  background: var(--surface-container);
+  color: var(--primary);
+  box-shadow: var(--shadow-1);
+}
+
+/* ---------- Empty state ---------- */
+
+.empty-state { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 34px 20px; text-align: center; }
+.empty-icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  border-radius: 22px;
+  background: var(--surface-container-high);
+  color: var(--on-surface-variant);
+  margin-bottom: 4px;
+}
+.empty-state strong { font-family: var(--font-display); font-size: 15px; font-weight: 700; }
+.empty-state p { font-size: 12px; color: var(--on-surface-variant); line-height: 1.6; max-width: 230px; }
+
+/* ---------- Journal ---------- */
+
+.journal-composer h2 { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 12px; }
+.journal-composer textarea {
+  width: 100%;
+  min-height: 110px;
+  resize: vertical;
+  border-radius: 16px;
+  border: 1.5px solid var(--outline);
+  background: var(--surface-container-low);
+  padding: 14px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--on-surface);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.journal-composer textarea:focus { border-color: var(--primary); }
+.journal-composer textarea::placeholder { color: var(--on-surface-variant); opacity: 0.7; }
+.composer-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; }
+
+.entry-list { display: flex; flex-direction: column; gap: 12px; }
+.entry header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.entry p { font-size: 13px; line-height: 1.7; margin-top: 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.entry footer { display: flex; justify-content: flex-end; margin-top: 10px; color: var(--primary); }
+
+/* ---------- Insights ---------- */
+
+.insight-hero { display: flex; align-items: center; gap: 18px; }
+.insight-stats { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.insight-stats li { display: flex; align-items: baseline; gap: 8px; }
+.insight-stats strong { font-family: var(--font-display); font-size: 20px; font-weight: 750; color: var(--primary); min-width: 34px; }
+.insight-stats span { font-size: 11px; color: var(--on-surface-variant); }
+
+.bar-chart { display: flex; gap: 7px; margin-top: 16px; height: 130px; }
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; }
+.bar-track { flex: 1; width: 100%; max-width: 18px; display: flex; align-items: flex-end; background: var(--surface-container-high); border-radius: 9px; overflow: hidden; }
+.bar { display: block; width: 100%; background: linear-gradient(180deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 55%, var(--surface)) 100%); border-radius: 9px; }
+.bar.today { background: linear-gradient(180deg, #c9963f 0%, #e5c084 100%); }
+.device.dark .bar.today { background: linear-gradient(180deg, #e5b375 0%, #8a6234 100%); }
+.bar-label { font-size: 9px; color: var(--on-surface-variant); font-weight: 600; }
+
+.best-habit { display: flex; gap: 14px; align-items: center; }
+.best-habit .icon-tile { width: 54px; height: 54px; border-radius: 18px; }
+.best-habit strong { display: block; font-family: var(--font-display); font-size: 15.5px; font-weight: 700; margin-top: 3px; }
+.best-habit p { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--on-surface-variant); margin-top: 5px; }
+
+.mood-tally { display: flex; flex-direction: column; gap: 11px; margin-top: 16px; }
+.mood-tally li { display: flex; align-items: center; gap: 12px; color: var(--on-surface-variant); }
+.mood-tally li.chosen-max { color: var(--primary); }
+.tally-track { flex: 1; height: 10px; border-radius: 5px; background: var(--surface-container-high); overflow: hidden; }
+.tally-track i { display: block; height: 100%; border-radius: 5px; background: var(--primary); transition: width 0.5s cubic-bezier(0.2, 0, 0, 1); }
+.mood-tally strong { font-size: 13px; min-width: 16px; text-align: right; font-family: var(--font-display); }
+
+.quote-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 26px 20px 18px; }
+.quote-card > svg { color: var(--primary); }
+.quote-card p { font-family: var(--font-display); font-size: 15.5px; font-weight: 650; line-height: 1.55; letter-spacing: -0.2px; max-width: 280px; }
+.quote-card footer { display: flex; align-items: center; gap: 7px; font-size: 10px; color: var(--on-surface-variant); margin-top: 6px; }
+.quote-card footer span { margin-left: auto; letter-spacing: 0.5px; font-size: 9px; }
+
+/* ---------- Buttons & text ---------- */
+
+.filled-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--primary);
+  color: var(--on-primary);
+  min-height: 50px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  font-weight: 650;
+  letter-spacing: 0.1px;
+  box-shadow: var(--shadow-1);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.filled-btn:hover { box-shadow: var(--shadow-2); filter: brightness(1.05); }
+.filled-btn:active { transform: scale(0.98); }
+
+.text-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.text-btn:hover { background: color-mix(in srgb, var(--primary) 10%, transparent); }
+.text-btn.danger { color: var(--error); }
+.text-btn.danger:hover { background: color-mix(in srgb, var(--error) 10%, transparent); }
+.text-btn.center { justify-content: center; width: 100%; margin-top: 6px; }
+
+.confirm-row {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--error) 9%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.confirm-row > span { font-size: 12px; font-weight: 550; color: var(--on-surface); line-height: 1.55; }
+.confirm-row > div { display: flex; justify-content: flex-end; align-items: center; gap: 2px; }
+.confirm-row .text-btn { padding: 8px 12px; }
+
+/* ---------- Bottom sheets ---------- */
+
+.sheet-scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--scrim);
+  backdrop-filter: blur(2px);
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  animation: fade-in 0.2s ease;
+}
+@keyframes fade-in { from { opacity: 0; } }
+
+.sheet {
+  width: 100%;
+  max-height: 88%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--surface-container-low);
+  border-radius: 30px 30px 0 0;
+  padding: 10px 22px max(26px, env(safe-area-inset-bottom));
+  animation: sheet-up 0.32s cubic-bezier(0.2, 0, 0, 1);
+  scrollbar-width: none;
+}
+.sheet::-webkit-scrollbar { display: none; }
+@keyframes sheet-up {
+  from { transform: translateY(40%); opacity: 0.6; }
+}
+
+.sheet-handle {
+  width: 36px;
+  height: 4.5px;
+  border-radius: 3px;
+  background: var(--outline);
+  margin: 6px auto 16px;
+}
+.sheet h2 { font-family: var(--font-display); font-size: 21px; font-weight: 750; letter-spacing: -0.6px; }
+.sheet > p { font-size: 12.5px; color: var(--on-surface-variant); margin-top: 5px; line-height: 1.6; }
+.sheet form { display: flex; flex-direction: column; margin-top: 20px; }
+.sheet form label, .sheet > label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--on-surface-variant);
+  margin: 16px 0 8px;
+}
+.sheet form label:first-child { margin-top: 0; }
+.sheet input {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 15px;
+  border: 1.5px solid var(--outline);
+  background: var(--surface-container);
+  padding: 0 16px;
+  font-size: 15px;
+  color: var(--on-surface);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.sheet input:focus { border-color: var(--primary); }
+.sheet .filled-btn { margin-top: 24px; }
+
+.choice-row { display: flex; gap: 8px; }
+.choice-row button { flex: 1; border-radius: 14px; padding: 6px; position: relative; overflow: hidden; }
+.choice-row button .cat { display: block; text-align: center; padding: 8px 0; border-radius: 9px; }
+.choice-row button.chosen { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 14px; }
+
+.choice-pill {
+  flex: 1;
+  min-height: 46px;
+  border-radius: 999px;
+  border: 1.5px solid var(--outline);
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--on-surface-variant);
+  position: relative;
+  overflow: hidden;
+}
+.choice-pill.chosen { background: var(--secondary-container); border-color: transparent; color: var(--on-secondary-container); }
+
+.preset-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.preset {
+  display: grid;
+  place-items: center;
+  padding: 7px;
+  border-radius: 18px;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.preset .icon-tile { width: 46px; height: 46px; border-radius: 15px; }
+.preset.chosen { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 8%, transparent); }
+
+.notif-list { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+.notif-list li {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-soft);
+  border-radius: 18px;
+  padding: 14px;
+}
+.notif-list .icon-tile { width: 38px; height: 38px; border-radius: 12px; }
+.notif-list strong { display: block; font-size: 13px; font-weight: 650; }
+.notif-list span { display: block; font-size: 11.5px; color: var(--on-surface-variant); margin-top: 3px; line-height: 1.5; }
+.sheet > .filled-btn { margin-top: 20px; }
+
+/* ---------- Profile sheet ---------- */
+
+.profile-head { display: flex; align-items: center; gap: 16px; margin-top: 14px; }
+.profile-head strong { display: block; font-family: var(--font-display); font-size: 17px; font-weight: 750; letter-spacing: -0.3px; }
+.profile-head span { display: block; font-size: 11.5px; color: var(--on-surface-variant); margin-top: 3px; }
+
+.profile-stats { display: flex; gap: 10px; margin-top: 20px; }
+.profile-stats li {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-soft);
+  border-radius: 18px;
+  padding: 14px 6px;
+}
+.profile-stats strong { font-family: var(--font-display); font-size: 19px; font-weight: 750; color: var(--primary); }
+.profile-stats span { font-size: 10px; color: var(--on-surface-variant); font-weight: 600; letter-spacing: 0.3px; }
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface-container);
+  border: 1px solid var(--outline-soft);
+  border-radius: 18px;
+  padding: 14px;
+  margin-top: 14px;
+}
+.setting-row .icon-tile { width: 42px; height: 42px; }
+.setting-row > div { flex: 1; min-width: 0; }
+.setting-row strong { display: block; font-size: 13.5px; font-weight: 650; }
+.setting-row span:not(.icon-tile) { display: block; font-size: 11px; color: var(--on-surface-variant); margin-top: 2px; }
+
+/* ---------- Switch ---------- */
+
+.switch {
+  width: 54px;
+  height: 32px;
+  border-radius: 999px;
+  border: 2px solid var(--outline);
+  background: var(--surface-container-high);
+  position: relative;
+  flex-shrink: 0;
+  overflow: visible;
+  transition: background 0.22s, border-color 0.22s;
+}
+.switch-thumb {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--on-surface-variant);
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), width 0.22s, height 0.22s, background 0.22s;
+}
+.switch.on { background: var(--primary); border-color: var(--primary); }
+.switch.on .switch-thumb { transform: translate(21px, -50%); width: 24px; height: 24px; background: var(--on-primary); }
+
+/* ---------- Snackbar ---------- */
+
+.snackbar {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: calc(96px + env(safe-area-inset-bottom));
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--snackbar-bg);
+  color: var(--snackbar-fg);
+  border-radius: 12px;
+  padding: 13px 8px 13px 16px;
+  box-shadow: var(--shadow-3);
+  animation: snack-up 0.28s cubic-bezier(0.2, 0, 0, 1);
+}
+@keyframes snack-up {
+  from { transform: translateY(16px); opacity: 0; }
+}
+.snackbar > span:first-of-type { flex: 1; font-size: 12.5px; min-width: 0; }
+.snackbar button {
+  color: #a9d6b2;
+  font-size: 11.5px;
+  font-weight: 750;
+  letter-spacing: 0.6px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.snackbar-close { color: var(--snackbar-fg) !important; opacity: 0.8; }
+
+/* ---------- Misc ---------- */
+
+::selection { background: color-mix(in srgb, var(--primary) 25%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!--
+      bloom. — one-file prototype.
+      Scroll to the script below and edit it directly; save and refresh the page.
+      React + Babel load from the internet, so this file needs a connection to run.
+    -->
+    <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+
+    <script type="text/babel" data-presets="react">
+      const {
+        useState,
+        useEffect,
+        useRef,
+        useMemo,
+        useCallback,
+        useContext,
+        createContext,
+      } = React
+
+// ==================== src/store.tsx ====================
+
+const MOODS = ["Low", "Okay", "Good", "Great", "Amazing"];
+const CATEGORIES = ["Personal", "Work", "Wellness"];
+const STORAGE_KEY = "bloom.prototype.v1";
+function dateKey(d = new Date()) {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+function addDays(d, n) {
+    const copy = new Date(d);
+    copy.setDate(copy.getDate() + n);
+    return copy;
+}
+function lastNDays(n) {
+    const out = [];
+    for (let i = n - 1; i >= 0; i--)
+        out.push(dateKey(addDays(new Date(), -i)));
+    return out;
+}
+/** Monday-start week containing today. */
+function currentWeek() {
+    const now = new Date();
+    const offset = (now.getDay() + 6) % 7;
+    const monday = addDays(now, -offset);
+    return Array.from({ length: 7 }, (_, i) => addDays(monday, i));
+}
+function streakOf(habit) {
+    const done = new Set(habit.history);
+    let streak = 0;
+    let cursor = new Date();
+    if (!done.has(dateKey(cursor)))
+        cursor = addDays(cursor, -1);
+    while (done.has(dateKey(cursor))) {
+        streak++;
+        cursor = addDays(cursor, -1);
+    }
+    return streak;
+}
+function bestStreakOf(habit) {
+    const days = [...habit.history].sort();
+    let best = 0;
+    let run = 0;
+    let prev = null;
+    for (const key of days) {
+        const d = new Date(`${key}T00:00:00`);
+        if (prev && dateKey(addDays(prev, 1)) === key)
+            run++;
+        else
+            run = 1;
+        best = Math.max(best, run);
+        prev = d;
+    }
+    return best;
+}
+function uid() {
+    try {
+        if (typeof crypto !== "undefined" && "randomUUID" in crypto)
+            return crypto.randomUUID();
+    }
+    catch {
+        // randomUUID needs a secure context — fall through to a timestamp id.
+    }
+    return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+function seedStore() {
+    const today = dateKey();
+    const streakDays = (n, includeToday) => Array.from({ length: n }, (_, i) => dateKey(addDays(new Date(), -(includeToday ? i : i + 1))));
+    return {
+        tasks: [
+            { id: uid(), title: "Read 10 pages of Atomic Habits", category: "Personal", time: "8:00 AM", done: true, doneOn: today },
+            { id: uid(), title: "Finish the landing page design", category: "Work", time: "10:00 AM", done: false },
+            { id: uid(), title: "30-minute walk in the park", category: "Wellness", time: "5:30 PM", done: false },
+            { id: uid(), title: "Plan tomorrow, unplug tonight", category: "Personal", time: "9:00 PM", done: false },
+        ],
+        habits: [
+            { id: uid(), title: "Drink more water", subtitle: "8 glasses a day", icon: "water", color: "sky", kind: "Build", history: streakDays(12, true) },
+            { id: uid(), title: "Mindful mornings", subtitle: "10 minutes of meditation", icon: "sun", color: "peach", kind: "Build", history: streakDays(8, false) },
+            { id: uid(), title: "Less screen time", subtitle: "No phone before bed", icon: "moon", color: "lilac", kind: "Break", history: streakDays(5, true) },
+            { id: uid(), title: "Move your body", subtitle: "20 minutes of movement", icon: "run", color: "rose", kind: "Build", history: streakDays(3, false) },
+        ],
+        entries: [
+            {
+                id: uid(),
+                text: "Took the long way home today and it cleared my head. Small win, but it counts.",
+                mood: "Good",
+                date: dateKey(addDays(new Date(), -1)),
+                ts: addDays(new Date(), -1).getTime(),
+            },
+        ],
+        moods: { [dateKey(addDays(new Date(), -1))]: "Good" },
+        dark: false,
+    };
+}
+function loadStore() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw)
+            return seedStore();
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed.tasks) || !Array.isArray(parsed.habits))
+            return seedStore();
+        return { ...seedStore(), ...parsed };
+    }
+    catch {
+        return seedStore();
+    }
+}
+const Ctx = createContext(null);
+function useBloom() {
+    const ctx = useContext(Ctx);
+    if (!ctx)
+        throw new Error("useBloom must be used inside BloomProvider");
+    return ctx;
+}
+function BloomProvider({ children }) {
+    const [store, setStore] = useState(() => loadStore());
+    const [tab, setTab] = useState("home");
+    const [sheet, setSheet] = useState(null);
+    const [toast, setToast] = useState(null);
+    const toastTimer = useRef(undefined);
+    useEffect(() => {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        }
+        catch {
+            // Storage unavailable (private mode) — the prototype still works in memory.
+        }
+    }, [store]);
+    const dismissToast = useCallback(() => {
+        window.clearTimeout(toastTimer.current);
+        setToast(null);
+    }, []);
+    const notify = useCallback((message, undo) => {
+        window.clearTimeout(toastTimer.current);
+        setToast({ id: Date.now(), message, undo });
+        toastTimer.current = window.setTimeout(() => setToast(null), 4000);
+    }, []);
+    const value = useMemo(() => ({
+        store,
+        tab,
+        go: (next) => setTab(next),
+        sheet,
+        openSheet: (next) => setSheet(next),
+        closeSheet: () => setSheet(null),
+        toast,
+        notify,
+        dismissToast,
+        addTask: (title, category, time) => {
+            const task = { id: uid(), title: title.trim(), category, time, done: false };
+            setStore((s) => ({ ...s, tasks: [task, ...s.tasks] }));
+            notify("Task added");
+        },
+        toggleTask: (id) => setStore((s) => ({
+            ...s,
+            tasks: s.tasks.map((t) => t.id === id ? { ...t, done: !t.done, doneOn: !t.done ? dateKey() : undefined } : t),
+        })),
+        deleteTask: (id) => {
+            let removed;
+            setStore((s) => {
+                removed = s.tasks.find((t) => t.id === id);
+                return { ...s, tasks: s.tasks.filter((t) => t.id !== id) };
+            });
+            notify("Task deleted", () => {
+                if (removed)
+                    setStore((s) => ({ ...s, tasks: [removed, ...s.tasks] }));
+            });
+        },
+        addHabit: (title, subtitle, icon, color, kind) => {
+            const habit = {
+                id: uid(),
+                title: title.trim(),
+                subtitle: subtitle.trim(),
+                icon,
+                color,
+                kind,
+                history: [],
+            };
+            setStore((s) => ({ ...s, habits: [habit, ...s.habits] }));
+            notify("Habit created");
+        },
+        toggleHabitToday: (id) => {
+            const today = dateKey();
+            setStore((s) => ({
+                ...s,
+                habits: s.habits.map((h) => h.id === id
+                    ? {
+                        ...h,
+                        history: h.history.includes(today)
+                            ? h.history.filter((d) => d !== today)
+                            : [...h.history, today],
+                    }
+                    : h),
+            }));
+        },
+        deleteHabit: (id) => {
+            let removed;
+            setStore((s) => {
+                removed = s.habits.find((h) => h.id === id);
+                return { ...s, habits: s.habits.filter((h) => h.id !== id) };
+            });
+            notify("Habit deleted", () => {
+                if (removed)
+                    setStore((s) => ({ ...s, habits: [...s.habits, removed] }));
+            });
+        },
+        addEntry: (text, mood) => {
+            const entry = { id: uid(), text: text.trim(), mood, date: dateKey(), ts: Date.now() };
+            setStore((s) => ({
+                ...s,
+                entries: [entry, ...s.entries],
+                moods: { ...s.moods, [entry.date]: mood },
+            }));
+            notify("Reflection saved");
+        },
+        deleteEntry: (id) => {
+            let removed;
+            setStore((s) => {
+                removed = s.entries.find((e) => e.id === id);
+                return { ...s, entries: s.entries.filter((e) => e.id !== id) };
+            });
+            notify("Reflection deleted", () => {
+                if (removed)
+                    setStore((s) => ({ ...s, entries: [removed, ...s.entries] }));
+            });
+        },
+        setMoodToday: (mood) => setStore((s) => ({ ...s, moods: { ...s.moods, [dateKey()]: mood } })),
+        setDark: (dark) => setStore((s) => ({ ...s, dark })),
+        resetData: () => {
+            setStore(seedStore());
+            notify("Data reset to sample content");
+        },
+    }), [store, tab, sheet, toast, notify, dismissToast]);
+    return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
+}
+
+// ==================== src/ui.tsx ====================
+
+const ICON_PATHS = {
+    home: (<>
+      <path d="m3 9.5 9-7 9 7V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20Z"/>
+      <path d="M9.5 21.5V14h5v7.5"/>
+    </>),
+    check: <path d="M20 6 9 17l-5-5"/>,
+    leaf: (<>
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+    </>),
+    book: <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>,
+    chart: (<>
+      <path d="M3 3v18h18"/>
+      <path d="M18 17V9M13 17V5M8 17v-3"/>
+    </>),
+    plus: <path d="M12 5v14M5 12h14"/>,
+    bell: (<>
+      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+    </>),
+    chevron: <path d="m9 18 6-6-6-6"/>,
+    fire: (<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/>),
+    water: (<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7Z"/>),
+    sun: (<>
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+    </>),
+    moon: <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>,
+    close: <path d="M18 6 6 18M6 6l12 12"/>,
+    search: (<>
+      <circle cx="11" cy="11" r="8"/>
+      <path d="m21 21-4.3-4.3"/>
+    </>),
+    trash: (<>
+      <path d="M3 6h18"/>
+      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+      <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+      <path d="M10 11v6M14 11v6"/>
+    </>),
+    spark: (<>
+      <path d="M12 3l1.9 5.8a2 2 0 0 0 1.28 1.27L21 12l-5.82 1.93a2 2 0 0 0-1.28 1.27L12 21l-1.9-5.8a2 2 0 0 0-1.28-1.27L3 12l5.82-1.93A2 2 0 0 0 10.1 8.8Z"/>
+      <path d="M19 3v3M17.5 4.5h3"/>
+    </>),
+    arrow: <path d="M5 12h14m-6-6 6 6-6 6"/>,
+    run: <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>,
+    heart: (<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>),
+    pencil: <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>,
+    undo: (<>
+      <path d="M3 7v6h6"/>
+      <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/>
+    </>),
+    user: (<>
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </>),
+    trophy: (<>
+      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16"/>
+      <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+    </>),
+    clock: (<>
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 6v6l4 2"/>
+    </>),
+    more: (<>
+      <circle cx="12" cy="5" r="1.4" fill="currentColor" stroke="none"/>
+      <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+      <circle cx="12" cy="19" r="1.4" fill="currentColor" stroke="none"/>
+    </>),
+    target: (<>
+      <circle cx="12" cy="12" r="10"/>
+      <circle cx="12" cy="12" r="6"/>
+      <circle cx="12" cy="12" r="2"/>
+    </>),
+    settings: (<>
+      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2Z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </>),
+    wind: <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2m9.6-8.3a2 2 0 1 1 1.4 3.4H2m14.2 11.2a2.5 2.5 0 1 0 2-4H2"/>,
+};
+function Icon({ name, size = 22, className }) {
+    return (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      {ICON_PATHS[name]}
+    </svg>);
+}
+/** Material-style ripple, attached to any element via onPointerDown. */
+function ripple(e) {
+    if (e.pointerType === "mouse" && e.button !== 0)
+        return;
+    const host = e.currentTarget;
+    const rect = host.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2.2;
+    const ink = document.createElement("span");
+    ink.className = "ink";
+    ink.style.width = ink.style.height = `${size}px`;
+    ink.style.left = `${e.clientX - rect.left - size / 2}px`;
+    ink.style.top = `${e.clientY - rect.top - size / 2}px`;
+    host.appendChild(ink);
+    window.setTimeout(() => ink.remove(), 600);
+}
+function ProgressRing({ progress, size = 118, stroke = 10, children, }) {
+    const r = (size - stroke) / 2;
+    const c = 2 * Math.PI * r;
+    const clamped = Math.min(100, Math.max(0, progress));
+    return (<div className="ring" style={{ width: size, height: size }}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--ring-track)" strokeWidth={stroke}/>
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--primary)" strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c - (clamped / 100) * c} transform={`rotate(-90 ${size / 2} ${size / 2})`} className="ring-arc" style={{ transition: "stroke-dashoffset .6s cubic-bezier(.2,0,0,1)" }}/>
+      </svg>
+      <div className="ring-center">{children}</div>
+    </div>);
+}
+const FOCUSABLE = 'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
+function Sheet({ open, onClose, title, children, }) {
+    const sheetRef = useRef(null);
+    const closeRef = useRef(onClose);
+    const previousRef = useRef(null);
+    closeRef.current = onClose;
+    // Remember the element that opened the sheet, so focus can go back to it.
+    useEffect(() => {
+        if (open)
+            return;
+        const remember = (e) => {
+            const target = e.target;
+            if (target && target !== document.body)
+                previousRef.current = target;
+        };
+        document.addEventListener("focusin", remember);
+        return () => document.removeEventListener("focusin", remember);
+    }, [open]);
+    useEffect(() => {
+        if (!open)
+            return;
+        const focusables = () => {
+            const found = sheetRef.current?.querySelectorAll(FOCUSABLE);
+            return found ? Array.from(found).filter((el) => !el.hasAttribute("disabled")) : [];
+        };
+        // A child with autoFocus has already claimed focus during commit.
+        if (!sheetRef.current?.contains(document.activeElement)) {
+            const list = focusables();
+            (list[0] ?? sheetRef.current)?.focus();
+        }
+        const onKey = (e) => {
+            if (e.key === "Escape") {
+                closeRef.current();
+                return;
+            }
+            if (e.key !== "Tab")
+                return;
+            const list = focusables();
+            if (!list.length)
+                return;
+            const first = list[0];
+            const last = list[list.length - 1];
+            const active = document.activeElement;
+            // Focus escaped the dialog (or never entered it) — pull it back in.
+            if (!active || !sheetRef.current?.contains(active)) {
+                e.preventDefault();
+                (e.shiftKey ? last : first).focus();
+                return;
+            }
+            if (e.shiftKey && active === first) {
+                e.preventDefault();
+                last.focus();
+            }
+            else if (!e.shiftKey && active === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        };
+        window.addEventListener("keydown", onKey);
+        return () => {
+            window.removeEventListener("keydown", onKey);
+            previousRef.current?.focus?.();
+        };
+    }, [open]);
+    if (!open)
+        return null;
+    return (<div className="sheet-scrim" onClick={onClose} role="presentation">
+      <div ref={sheetRef} className="sheet" role="dialog" aria-modal="true" aria-label={title} tabIndex={-1} onClick={(e) => e.stopPropagation()}>
+        <div className="sheet-handle" aria-hidden="true"/>
+        {children}
+      </div>
+    </div>);
+}
+function Switch({ checked, onChange, label }) {
+    return (<button type="button" role="switch" aria-checked={checked} aria-label={label} className={`switch ${checked ? "on" : ""}`} onClick={() => onChange(!checked)} onPointerDown={ripple}>
+      <span className="switch-thumb"/>
+    </button>);
+}
+function SegmentedTabs({ options, value, onChange, }) {
+    return (<div className="segmented" role="tablist">
+      {options.map((opt) => (<button key={opt.value} role="tab" aria-selected={value === opt.value} className={value === opt.value ? "active" : ""} onClick={() => onChange(opt.value)} onPointerDown={ripple}>
+          {value === opt.value && <Icon name="check" size={15}/>}
+          {opt.label}
+        </button>))}
+    </div>);
+}
+const MOOD_MOUTHS = [
+    "M11 22.5 Q16 16 21 22.5",
+    "M11 21h10",
+    "M10 19 Q16 26 22 19",
+    "M10 19 Q16 26 22 19",
+    "M10 19 Q16 30 22 19Z",
+];
+function MoodFace({ mood, size = 34 }) {
+    const idx = ["Low", "Okay", "Good", "Great", "Amazing"].indexOf(mood);
+    return (<svg viewBox="0 0 32 32" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+      <circle cx="16" cy="16" r="12"/>
+      <circle cx="12" cy="13" r="0.9" fill="currentColor" stroke="none"/>
+      <circle cx="20" cy="13" r="0.9" fill="currentColor" stroke="none"/>
+      <path d={MOOD_MOUTHS[Math.max(0, idx)]} strokeLinecap="round"/>
+    </svg>);
+}
+function Fab({ icon, label, onClick }) {
+    return (<button className="fab" aria-label={label} onClick={onClick} onPointerDown={ripple}>
+      <Icon name={icon} size={26}/>
+    </button>);
+}
+function useClock() {
+    const [now, setNow] = useState(() => new Date());
+    useEffect(() => {
+        const t = window.setInterval(() => setNow(new Date()), 30000);
+        return () => window.clearInterval(t);
+    }, []);
+    return now;
+}
+function EmptyState({ icon, title, body }) {
+    return (<div className="empty-state">
+      <span className="empty-icon">
+        <Icon name={icon} size={30}/>
+      </span>
+      <strong>{title}</strong>
+      <p>{body}</p>
+    </div>);
+}
+function BrandMark({ size = 34 }) {
+    return (<span className="brand-mark" style={{ width: size, height: size, borderRadius: size * 0.36 }}>
+      <Icon name="leaf" size={size * 0.62}/>
+    </span>);
+}
+function Avatar({ name, onOpen }) {
+    const { store } = useBloom();
+    return (<button className={`avatar ${store.dark ? "dark" : ""}`} onClick={onOpen} onPointerDown={ripple} aria-label="Open profile">
+      {name.charAt(0).toUpperCase()}
+    </button>);
+}
+
+// ==================== src/screens.tsx ====================
+
+/* ---------- shared bits ---------- */
+const GREETINGS = [
+    [5, "Good evening"],
+    [12, "Good morning"],
+    [17, "Good afternoon"],
+    [22, "Good evening"],
+    [24, "Good night"],
+];
+function greeting() {
+    const h = new Date().getHours();
+    for (const [until, label] of GREETINGS)
+        if (h < until)
+            return label;
+    return "Hello";
+}
+function formatDateLong(d) {
+    return d.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+}
+function formatDayShort(key) {
+    return new Date(`${key}T00:00:00`).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+}
+function HabitIcon({ habit, size = 22 }) {
+    return (<span className={`icon-tile tone-${habit.color}`}>
+      <Icon name={habit.icon} size={size}/>
+    </span>);
+}
+function StreakBadge({ habit }) {
+    const streak = streakOf(habit);
+    return (<span className="streak-badge">
+      <Icon name="fire" size={14}/>
+      {streak}
+    </span>);
+}
+function HabitHistoryDots({ habit }) {
+    const done = new Set(habit.history);
+    const days = lastNDays(7);
+    return (<span className="week-dots" aria-hidden="true">
+      {days.map((d) => (<i key={d} className={done.has(d) ? "on" : ""}/>))}
+    </span>);
+}
+function TaskRow({ task }) {
+    const { toggleTask, deleteTask } = useBloom();
+    return (<li className={`task-row ${task.done ? "done" : ""}`}>
+      <button className="checkbox" role="checkbox" aria-checked={task.done} aria-label={`${task.done ? "Mark" : "Complete"} ${task.title}`} onClick={() => toggleTask(task.id)} onPointerDown={ripple}>
+        {task.done && <Icon name="check" size={15}/>}
+      </button>
+      <div className="task-info">
+        <span className="task-title">{task.title}</span>
+        <span className="task-meta">
+          <i className={`cat cat-${task.category.toLowerCase()}`}>{task.category}</i>
+          <span className="task-time">
+            <Icon name="clock" size={11}/> {task.time}
+          </span>
+        </span>
+      </div>
+      <button className="icon-btn ghost" aria-label={`Delete ${task.title}`} onClick={() => deleteTask(task.id)} onPointerDown={ripple}>
+        <Icon name="trash" size={17}/>
+      </button>
+    </li>);
+}
+function MoodPicker() {
+    const { store, setMoodToday } = useBloom();
+    const today = store.moods[dateKey()] ?? "Good";
+    return (<section className="card mood-card">
+      <header className="card-head">
+        <div>
+          <h2>How are you feeling?</h2>
+          <p>A quick daily check-in</p>
+        </div>
+        <MoodFace mood={today} size={36}/>
+      </header>
+      <div className="moods" role="radiogroup" aria-label="Mood">
+        {MOODS.map((m) => (<button key={m} role="radio" aria-checked={today === m} className={today === m ? "chosen" : ""} onClick={() => setMoodToday(m)} onPointerDown={ripple}>
+            <MoodFace mood={m} size={30}/>
+            <span>{m}</span>
+          </button>))}
+      </div>
+    </section>);
+}
+/* ---------- Home ---------- */
+function HomeScreen() {
+    const { store, go, openSheet } = useBloom();
+    const today = dateKey();
+    const tasksDone = store.tasks.filter((t) => t.done).length;
+    const taskPct = store.tasks.length ? Math.round((tasksDone / store.tasks.length) * 100) : 0;
+    const habitsDone = store.habits.filter((h) => h.history.includes(today)).length;
+    const habitPct = store.habits.length ? Math.round((habitsDone / store.habits.length) * 100) : 0;
+    const topStreak = store.habits.reduce((max, h) => Math.max(max, streakOf(h)), 0);
+    const week = currentWeek();
+    const weekActivity = week.map((d) => {
+        const key = dateKey(d);
+        const t = store.tasks.filter((x) => x.done && (x.doneOn ?? "") === key).length;
+        const h = store.habits.filter((x) => x.history.includes(key)).length;
+        return t + h;
+    });
+    const maxActivity = Math.max(1, ...weekActivity);
+    return (<div className="screen">
+      <section className="hero card">
+        <div className="hero-top">
+          <span className="eyebrow">
+            <i /> A LITTLE BETTER, EVERY DAY
+          </span>
+          <span className="hero-date">{formatDateLong(new Date())}</span>
+        </div>
+        <h1>
+          {greeting()}, Alex.
+          <br />
+          Make room for a better you.
+        </h1>
+        <div className="hero-rings">
+          <ProgressRing progress={taskPct}>
+            <strong>{taskPct}%</strong>
+            <span>
+              {tasksDone}/{store.tasks.length} tasks
+            </span>
+          </ProgressRing>
+          <ProgressRing progress={habitPct} size={92} stroke={8}>
+            <strong>{habitsDone}</strong>
+            <span>habits</span>
+          </ProgressRing>
+          <ul className="hero-stats">
+            <li>
+              <Icon name="trophy" size={16}/>
+              <div>
+                <strong>{topStreak} days</strong>
+                <span>Best active streak</span>
+              </div>
+            </li>
+            <li>
+              <Icon name="book" size={16}/>
+              <div>
+                <strong>{store.entries.length}</strong>
+                <span>Reflections kept</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="card">
+        <header className="card-head">
+          <div>
+            <h2>Today’s focus</h2>
+            <p>{store.tasks.filter((t) => !t.done).length} tasks waiting for you</p>
+          </div>
+          <button className="text-btn" onClick={() => go("tasks")} onPointerDown={ripple}>
+            View all <Icon name="chevron" size={15}/>
+          </button>
+        </header>
+        {store.tasks.length ? (<ul className="task-list">
+            {store.tasks.slice(0, 3).map((t) => (<TaskRow key={t.id} task={t}/>))}
+          </ul>) : (<EmptyState icon="check" title="Nothing on your plate" body="Add your first task and take it one step at a time."/>)}
+      </section>
+
+      <section className="card">
+        <header className="card-head">
+          <div>
+            <h2>Your daily habits</h2>
+            <p>
+              {habitsDone} of {store.habits.length} done today
+            </p>
+          </div>
+          <button className="text-btn" onClick={() => go("habits")} onPointerDown={ripple}>
+            View all <Icon name="chevron" size={15}/>
+          </button>
+        </header>
+        <ul className="habit-list">
+          {store.habits.slice(0, 3).map((h) => (<HomeHabitRow key={h.id} habit={h}/>))}
+        </ul>
+      </section>
+
+      <MoodPicker />
+
+      <section className="card week-strip-card">
+        <header className="card-head">
+          <div>
+            <h2>A fresh week</h2>
+            <p>
+              {week[0].toLocaleDateString(undefined, { month: "short", day: "numeric" })} –{" "}
+              {week[6].toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+            </p>
+          </div>
+        </header>
+        <div className="week-strip">
+          {week.map((d, i) => (<div key={i} className="week-cell">
+              <span className="week-bar-wrap">
+                <i className="week-bar" style={{ height: `${weekActivity[i] === 0 ? 0 : Math.max(8, (weekActivity[i] / maxActivity) * 44)}px` }}/>
+              </span>
+              <span className="week-day">{d.toLocaleDateString(undefined, { weekday: "narrow" })}</span>
+              <strong className={dateKey(d) === today ? "today" : ""}>{d.getDate()}</strong>
+            </div>))}
+        </div>
+      </section>
+
+      <button className="banner" onClick={() => openSheet("task")} onPointerDown={ripple}>
+        <span className="banner-icon">
+          <Icon name="spark" size={22}/>
+        </span>
+        <span>
+          <strong>Small steps, big change.</strong>
+          <span>Add one thing that matters today.</span>
+        </span>
+        <Icon name="plus" size={20}/>
+      </button>
+    </div>);
+}
+function HomeHabitRow({ habit }) {
+    const { toggleHabitToday } = useBloom();
+    const done = habit.history.includes(dateKey());
+    return (<li className={`habit-row ${done ? "done" : ""}`}>
+      <HabitIcon habit={habit}/>
+      <div className="habit-info">
+        <strong>{habit.title}</strong>
+        <small>{habit.subtitle}</small>
+      </div>
+      <StreakBadge habit={habit}/>
+      <button className={`habit-check ${done ? "checked" : ""}`} aria-label={`${done ? "Undo" : "Complete"} ${habit.title}`} onClick={() => toggleHabitToday(habit.id)} onPointerDown={ripple}>
+        <Icon name={done ? "check" : "plus"} size={18}/>
+      </button>
+    </li>);
+}
+/* ---------- Tasks ---------- */
+function TasksScreen() {
+    const { store, openSheet } = useBloom();
+    const [filter, setFilter] = useState("all");
+    const [query, setQuery] = useState("");
+    const visible = store.tasks.filter((t) => {
+        if (filter === "open" && t.done)
+            return false;
+        if (filter === "done" && !t.done)
+            return false;
+        if (query && !t.title.toLowerCase().includes(query.toLowerCase()))
+            return false;
+        return true;
+    });
+    const open = store.tasks.filter((t) => !t.done).length;
+    return (<div className="screen">
+      <header className="page-head">
+        <span className="eyebrow">
+          <i /> ONE THING AT A TIME
+        </span>
+        <h1>My tasks</h1>
+        <p>{open ? `${open} tasks left — you’ve got this.` : "All clear. Enjoy the space."}</p>
+      </header>
+
+      <label className="search-field">
+        <Icon name="search" size={18}/>
+        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search your tasks" aria-label="Search tasks"/>
+        {query && (<button className="icon-btn" aria-label="Clear search" onClick={() => setQuery("")}>
+            <Icon name="close" size={16}/>
+          </button>)}
+      </label>
+
+      <SegmentedTabs value={filter} onChange={setFilter} options={[
+            { value: "all", label: `All ${store.tasks.length}` },
+            { value: "open", label: `Open ${open}` },
+            { value: "done", label: `Done ${store.tasks.length - open}` },
+        ]}/>
+
+      {visible.length ? (<ul className="task-list card">
+          {visible.map((t) => (<TaskRow key={t.id} task={t}/>))}
+        </ul>) : (<EmptyState icon="check" title="Nothing here" body={query ? `No tasks match “${query}”.` : "No tasks in this view."}/>)}
+
+      <button className="banner" onClick={() => openSheet("task")} onPointerDown={ripple}>
+        <span className="banner-icon">
+          <Icon name="plus" size={22}/>
+        </span>
+        <span>
+          <strong>Add a task</strong>
+          <span>What deserves your attention?</span>
+        </span>
+        <Icon name="chevron" size={20}/>
+      </button>
+    </div>);
+}
+/* ---------- Habits ---------- */
+function HabitsScreen() {
+    const { store, openSheet } = useBloom();
+    const [filter, setFilter] = useState("all");
+    const today = dateKey();
+    const visible = store.habits.filter((h) => filter === "all" || h.kind === filter);
+    const doneCount = store.habits.filter((h) => h.history.includes(today)).length;
+    return (<div className="screen">
+      <header className="page-head">
+        <span className="eyebrow">
+          <i /> SMALL HABITS, LASTING CHANGE
+        </span>
+        <h1>Habits</h1>
+        <p>
+          {doneCount} of {store.habits.length} done today
+        </p>
+      </header>
+
+      <SegmentedTabs value={filter} onChange={setFilter} options={[
+            { value: "all", label: "All" },
+            { value: "Build", label: "Build" },
+            { value: "Break", label: "Break" },
+        ]}/>
+
+      {visible.length ? (<ul className="habit-list card">
+          {visible.map((h) => (<HabitsRow key={h.id} habit={h}/>))}
+        </ul>) : (<EmptyState icon="leaf" title="No habits here yet" body="Create a habit you want to build — or one you want to break."/>)}
+
+      <button className="banner" onClick={() => openSheet("habit")} onPointerDown={ripple}>
+        <span className="banner-icon">
+          <Icon name="leaf" size={22}/>
+        </span>
+        <span>
+          <strong>New habit</strong>
+          <span>Start something good today.</span>
+        </span>
+        <Icon name="plus" size={20}/>
+      </button>
+    </div>);
+}
+function HabitsRow({ habit }) {
+    const { toggleHabitToday, deleteHabit } = useBloom();
+    const [expanded, setExpanded] = useState(false);
+    const done = habit.history.includes(dateKey());
+    const streak = streakOf(habit);
+    return (<li className={`habit-row detailed ${done ? "done" : ""}`}>
+      <div className="habit-main">
+        <HabitIcon habit={habit} size={26}/>
+        <button className="habit-info" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>
+          <strong>
+            {habit.title}
+            {habit.kind === "Break" && <i className="break-tag">BREAK</i>}
+          </strong>
+          <small>{habit.subtitle}</small>
+        </button>
+        <StreakBadge habit={habit}/>
+        <button className={`habit-check ${done ? "checked" : ""}`} aria-label={`${done ? "Undo" : "Complete"} ${habit.title}`} onClick={() => toggleHabitToday(habit.id)} onPointerDown={ripple}>
+          <Icon name={done ? "check" : "plus"} size={19}/>
+        </button>
+      </div>
+      {expanded && (<div className="habit-detail">
+          <div className="detail-stats">
+            <span>
+              <Icon name="fire" size={14}/> {streak} day streak
+            </span>
+              <span>
+                <Icon name="trophy" size={14}/> {bestStreakOf(habit)} best
+              </span>
+          </div>
+          <HabitHistoryDots habit={habit}/>
+          <div className="detail-actions">
+            <button className="text-btn danger" onClick={() => deleteHabit(habit.id)} onPointerDown={ripple}>
+              <Icon name="trash" size={15}/> Delete habit
+            </button>
+          </div>
+        </div>)}
+    </li>);
+}
+/* ---------- Journal ---------- */
+function JournalScreen() {
+    const { store, addEntry } = useBloom();
+    const [text, setText] = useState("");
+    const [mood, setMood] = useState(store.moods[dateKey()] ?? "Good");
+    function save() {
+        if (!text.trim())
+            return;
+        addEntry(text, mood);
+        setText("");
+    }
+    return (<div className="screen">
+      <header className="page-head">
+        <span className="eyebrow">
+          <i /> A SPACE TO BE YOURSELF
+        </span>
+        <h1>Journal</h1>
+        <p>A clearer mind starts with a little reflection.</p>
+      </header>
+
+      <section className="card journal-composer">
+        <h2>What’s on your mind today?</h2>
+        <textarea value={text} onChange={(e) => setText(e.target.value)} placeholder="Let your thoughts flow…" aria-label="Journal entry" rows={4}/>
+        <div className="composer-row">
+          <div className="mini-moods" role="radiogroup" aria-label="Mood for this entry">
+            {MOODS.map((m) => (<button key={m} role="radio" aria-checked={mood === m} aria-label={m} className={mood === m ? "chosen" : ""} onClick={() => setMood(m)}>
+                <MoodFace mood={m} size={26}/>
+              </button>))}
+          </div>
+          <button className="filled-btn" disabled={!text.trim()} onClick={save} onPointerDown={ripple}>
+            Save reflection
+          </button>
+        </div>
+      </section>
+
+      {store.entries.length ? (<ul className="entry-list">
+          {store.entries.map((entry) => (<EntryRow key={entry.id} entry={entry}/>))}
+        </ul>) : (<EmptyState icon="book" title="Your story starts here" body="Write your first reflection above."/>)}
+    </div>);
+}
+function EntryRow({ entry }) {
+    const { deleteEntry } = useBloom();
+    return (<li className="card entry">
+      <header>
+        <span className="eyebrow">
+          <i /> {formatDayShort(entry.date).toUpperCase()} · {entry.mood.toUpperCase()}
+        </span>
+        <button className="icon-btn ghost" aria-label="Delete reflection" onClick={() => deleteEntry(entry.id)} onPointerDown={ripple}>
+          <Icon name="trash" size={16}/>
+        </button>
+      </header>
+      <p>{entry.text}</p>
+      <footer>
+        <MoodFace mood={entry.mood} size={22}/>
+      </footer>
+    </li>);
+}
+/* ---------- Insights ---------- */
+function InsightsScreen() {
+    const { store } = useBloom();
+    const days = lastNDays(14);
+    const activity = days.map((key) => {
+        const t = store.tasks.filter((x) => x.done && (x.doneOn ?? "") === key).length;
+        const h = store.habits.filter((x) => x.history.includes(key)).length;
+        return t + h;
+    });
+    const max = Math.max(1, ...activity);
+    const totals = days.reduce((sum, v, i) => sum + activity[i], 0);
+    const activeDays = activity.filter((v) => v > 0).length;
+    const bestHabit = [...store.habits].sort((a, b) => streakOf(b) - streakOf(a))[0];
+    const dayMoods = Object.values(store.moods);
+    const moodTally = MOODS.map((m) => ({ mood: m, count: dayMoods.filter((v) => v === m).length }));
+    const maxMood = Math.max(1, ...moodTally.map((m) => m.count));
+    const week = currentWeek();
+    return (<div className="screen">
+      <header className="page-head">
+        <span className="eyebrow">
+          <i /> LOOK HOW FAR YOU’VE GROWN
+        </span>
+        <h1>Insights</h1>
+        <p>Your last two weeks, at a glance.</p>
+      </header>
+
+      <section className="card insight-hero">
+        <ProgressRing progress={Math.round((activeDays / 14) * 100)} size={132} stroke={11}>
+          <strong>{activeDays}</strong>
+          <span>of 14 days active</span>
+        </ProgressRing>
+        <ul className="insight-stats">
+          <li>
+            <strong>{totals}</strong>
+            <span>Total check-ins</span>
+          </li>
+          <li>
+            <strong>{store.tasks.filter((t) => t.done).length}</strong>
+            <span>Tasks completed</span>
+          </li>
+          <li>
+            <strong>{store.entries.length}</strong>
+            <span>Reflections kept</span>
+          </li>
+        </ul>
+      </section>
+
+      <section className="card">
+        <header className="card-head">
+          <div>
+            <h2>Every small step counts</h2>
+            <p>Daily activity, last 14 days</p>
+          </div>
+        </header>
+        <div className="bar-chart" role="img" aria-label="Daily activity over the last 14 days">
+          {days.map((key, i) => (<div key={key} className="bar-col">
+              <span className="bar-track">
+                <i className={key === dateKey() ? "bar today" : "bar"} style={{ height: `${activity[i] === 0 ? 0 : Math.max(6, (activity[i] / max) * 100)}%` }}/>
+              </span>
+              {i % 2 === 0 && <span className="bar-label">{formatDayShort(key).split(" ")[1]}</span>}
+            </div>))}
+        </div>
+      </section>
+
+      {bestHabit && (<section className="card best-habit">
+          <HabitIcon habit={bestHabit} size={30}/>
+          <div>
+            <span className="eyebrow">
+              <i /> YOUR STRONGEST HABIT
+            </span>
+            <strong>{bestHabit.title}</strong>
+            <p>
+              <Icon name="fire" size={13}/> {streakOf(bestHabit)} days in a row — keep it alive today.
+            </p>
+          </div>
+        </section>)}
+
+      <section className="card">
+        <header className="card-head">
+          <div>
+            <h2>Mood over time</h2>
+            <p>From your daily check-ins</p>
+          </div>
+        </header>
+        <ul className="mood-tally">
+          {moodTally.map(({ mood, count }) => (<li key={mood}>
+              <MoodFace mood={mood} size={26}/>
+              <span className="tally-track">
+                <i style={{ width: `${(count / maxMood) * 100}%` }}/>
+              </span>
+              <strong>{count}</strong>
+            </li>))}
+        </ul>
+      </section>
+
+      <section className="card quote-card">
+        <Icon name="spark" size={26}/>
+        <p>You don’t need to change everything. Just one small thing today.</p>
+        <footer>
+          <Icon name="leaf" size={14}/> bloom with intention
+          <span>
+            Week of {week[0].toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+          </span>
+        </footer>
+      </section>
+    </div>);
+}
+
+// ==================== src/App.tsx ====================
+
+function to12h(t) {
+    const [h, m] = t.split(":").map(Number);
+    if (Number.isNaN(h))
+        return "";
+    const suffix = h >= 12 ? "PM" : "AM";
+    const hour = h % 12 === 0 ? 12 : h % 12;
+    return `${hour}:${String(m ?? 0).padStart(2, "0")} ${suffix}`;
+}
+const TABS = [
+    { key: "home", label: "Home", icon: "home" },
+    { key: "tasks", label: "Tasks", icon: "check" },
+    { key: "habits", label: "Habits", icon: "leaf" },
+    { key: "journal", label: "Journal", icon: "book" },
+    { key: "insights", label: "Insights", icon: "chart" },
+];
+const HABIT_PRESETS = [
+    { icon: "water", color: "sky" },
+    { icon: "sun", color: "peach" },
+    { icon: "moon", color: "lilac" },
+    { icon: "run", color: "rose" },
+    { icon: "leaf", color: "green" },
+    { icon: "heart", color: "rose" },
+    { icon: "wind", color: "sky" },
+    { icon: "book", color: "sand" },
+];
+function StatusBar() {
+    const now = useClock();
+    const time = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }).replace(/\s?[AP]M/i, "");
+    return (<div className="status-bar" aria-hidden="true">
+      <span className="status-time">{time}</span>
+      <span className="camera-cutout"/>
+      <span className="status-icons">
+        <svg width="14" height="13" viewBox="0 0 16 14" fill="currentColor">
+          <path d="M1 13h2V9H1zm4 0h2V6H5zm4 0h2V3H9zm4 0h2V0h-2z"/>
+        </svg>
+        <svg width="15" height="13" viewBox="0 0 18 16" fill="none" stroke="currentColor" strokeWidth="1.6">
+          <path d="M1 5a12 12 0 0 1 16 0M4 8a8 8 0 0 1 10 0M7 11a3 3 0 0 1 4 0" strokeLinecap="round"/>
+          <circle cx="9" cy="14" r="0.8" fill="currentColor" stroke="none"/>
+        </svg>
+        <span className="battery">
+          <span className="battery-body">
+            <i style={{ width: "100%" }}/>
+          </span>
+          <span className="battery-cap"/>
+        </span>
+      </span>
+    </div>);
+}
+function TopBar() {
+    const { tab, store, openSheet } = useBloom();
+    const label = TABS.find((t) => t.key === tab)?.label ?? "bloom.";
+    return (<header className="top-bar">
+      <div className="top-bar-left">
+        <BrandMark size={34}/>
+        <div className="top-bar-title">
+          <strong>bloom.</strong>
+          <span>{label}</span>
+        </div>
+      </div>
+      <div className="top-bar-actions">
+        <button className={`icon-btn ${store.dark ? "dark" : ""}`} aria-label="Notifications" onClick={() => openSheet("notifs")} onPointerDown={ripple}>
+          <Icon name="bell" size={20}/>
+          <i className="dot"/>
+        </button>
+        <Avatar name="Alex" onOpen={() => openSheet("profile")}/>
+      </div>
+    </header>);
+}
+function NavBar() {
+    const { tab, go } = useBloom();
+    return (<nav className="nav-bar" aria-label="Main navigation">
+      {TABS.map((t) => (<button key={t.key} className={tab === t.key ? "active" : ""} aria-current={tab === t.key ? "page" : undefined} onClick={() => go(t.key)} onPointerDown={ripple}>
+          <span className="nav-pill">
+            <Icon name={t.icon} size={21}/>
+          </span>
+          <span className="nav-label">{t.label}</span>
+        </button>))}
+    </nav>);
+}
+function Fabs() {
+    const { tab, openSheet } = useBloom();
+    if (tab === "insights")
+        return null;
+    const isHabits = tab === "habits";
+    return (<div className="fab-wrap">
+      <Fab icon={isHabits ? "leaf" : "plus"} label={isHabits ? "New habit" : "New task"} onClick={() => openSheet(isHabits ? "habit" : "task")}/>
+    </div>);
+}
+function NewTaskSheet() {
+    const { sheet, closeSheet, addTask } = useBloom();
+    const [title, setTitle] = useState("");
+    const [category, setCategory] = useState("Personal");
+    const [time, setTime] = useState("");
+    useEffect(() => {
+        if (sheet === "task") {
+            setTitle("");
+            setCategory("Personal");
+            setTime("");
+        }
+    }, [sheet]);
+    function submit(e) {
+        e.preventDefault();
+        if (!title.trim())
+            return;
+        addTask(title, category, time.trim() ? to12h(time) : "Anytime");
+        closeSheet();
+    }
+    return (<Sheet open={sheet === "task"} onClose={closeSheet} title="New task">
+      <h2>Make space for a small step</h2>
+      <p>What would you like to focus on?</p>
+      <form onSubmit={submit}>
+        <label htmlFor="task-title">Task name</label>
+        <input id="task-title" autoFocus value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Make time for a walk" maxLength={80}/>
+        <label>Category</label>
+        <div className="choice-row" role="radiogroup" aria-label="Category">
+          {CATEGORIES.map((c) => (<button type="button" key={c} role="radio" aria-checked={category === c} className={category === c ? "chosen" : ""} onClick={() => setCategory(c)} onPointerDown={ripple}>
+              <i className={`cat cat-${c.toLowerCase()}`}>{c}</i>
+            </button>))}
+        </div>
+        <label htmlFor="task-time">Time (optional)</label>
+        <input id="task-time" type="time" value={time} onChange={(e) => setTime(e.target.value)}/>
+        <button className="filled-btn" type="submit" disabled={!title.trim()} onPointerDown={ripple}>
+          <Icon name="plus" size={18}/> Add task
+        </button>
+      </form>
+    </Sheet>);
+}
+function NewHabitSheet() {
+    const { sheet, closeSheet, addHabit } = useBloom();
+    const [title, setTitle] = useState("");
+    const [subtitle, setSubtitle] = useState("");
+    const [kind, setKind] = useState("Build");
+    const [preset, setPreset] = useState(0);
+    useEffect(() => {
+        if (sheet === "habit") {
+            setTitle("");
+            setSubtitle("");
+            setKind("Build");
+            setPreset(0);
+        }
+    }, [sheet]);
+    function submit(e) {
+        e.preventDefault();
+        if (!title.trim())
+            return;
+        const p = HABIT_PRESETS[preset];
+        addHabit(title, subtitle.trim() || (kind === "Build" ? "A little better, every day" : "Make space for better things"), p.icon, p.color, kind);
+        closeSheet();
+    }
+    return (<Sheet open={sheet === "habit"} onClose={closeSheet} title="New habit">
+      <h2>Start something good</h2>
+      <p>Choose a habit to build — or one to leave behind.</p>
+      <form onSubmit={submit}>
+        <div className="choice-row" role="radiogroup" aria-label="Habit kind">
+          {["Build", "Break"].map((k) => (<button type="button" key={k} role="radio" aria-checked={kind === k} className={`choice-pill ${kind === k ? "chosen" : ""}`} onClick={() => setKind(k)} onPointerDown={ripple}>
+              {k === "Build" ? "I want to build" : "I want to break"}
+            </button>))}
+        </div>
+        <label htmlFor="habit-title">Habit name</label>
+        <input id="habit-title" autoFocus value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Read every morning" maxLength={60}/>
+        <label htmlFor="habit-subtitle">What does success look like?</label>
+        <input id="habit-subtitle" value={subtitle} onChange={(e) => setSubtitle(e.target.value)} placeholder="e.g. 10 pages before breakfast" maxLength={80}/>
+        <label>Icon &amp; color</label>
+        <div className="preset-grid" role="radiogroup" aria-label="Icon and color">
+          {HABIT_PRESETS.map((p, i) => (<button type="button" key={i} role="radio" aria-checked={preset === i} aria-label={`Icon ${i + 1}`} className={`preset ${preset === i ? "chosen" : ""}`} onClick={() => setPreset(i)} onPointerDown={ripple}>
+              <span className={`icon-tile tone-${p.color}`}>
+                <Icon name={p.icon} size={20}/>
+              </span>
+            </button>))}
+        </div>
+        <button className="filled-btn" type="submit" disabled={!title.trim()} onPointerDown={ripple}>
+          <Icon name="plus" size={18}/> Create habit
+        </button>
+      </form>
+    </Sheet>);
+}
+function NotifsSheet() {
+    const { sheet, closeSheet, store } = useBloom();
+    const today = dateKey();
+    const openTasks = store.tasks.filter((t) => !t.done).length;
+    const habitsLeft = store.habits.filter((h) => !h.history.includes(today)).length;
+    const topHabit = [...store.habits].sort((a, b) => streakOf(b) - streakOf(a))[0];
+    const notes = [
+        openTasks > 0 && {
+            icon: "check",
+            title: `${openTasks} task${openTasks > 1 ? "s" : ""} waiting`,
+            body: "One thing at a time. Pick the one that matters most.",
+        },
+        topHabit && {
+            icon: "fire",
+            title: `${streakOf(topHabit)}-day streak alive`,
+            body: `“${topHabit.title}” is your strongest habit right now.`,
+        },
+        habitsLeft > 0 && {
+            icon: "leaf",
+            title: `${habitsLeft} habit${habitsLeft > 1 ? "s" : ""} left today`,
+            body: "Little things make a big difference.",
+        },
+    ].filter(Boolean);
+    return (<Sheet open={sheet === "notifs"} onClose={closeSheet} title="Notifications">
+      <h2>You’re right on track</h2>
+      <p>{formatToday()}</p>
+      <ul className="notif-list">
+        {notes.map((n) => (<li key={n.title}>
+            <span className="icon-tile tone-green">
+              <Icon name={n.icon} size={19}/>
+            </span>
+            <div>
+              <strong>{n.title}</strong>
+              <span>{n.body}</span>
+            </div>
+          </li>))}
+      </ul>
+      <button className="filled-btn" onClick={closeSheet} onPointerDown={ripple}>
+        Got it
+      </button>
+    </Sheet>);
+}
+function formatToday() {
+    return new Date().toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+    });
+}
+function ProfileSheet() {
+    const { sheet, closeSheet, store, setDark, resetData } = useBloom();
+    const [confirmReset, setConfirmReset] = useState(false);
+    const today = dateKey();
+    const habitsDone = store.habits.filter((h) => h.history.includes(today)).length;
+    const open = sheet === "profile";
+    useEffect(() => {
+        if (open)
+            setConfirmReset(false);
+    }, [open]);
+    return (<Sheet open={open} onClose={closeSheet} title="Profile">
+      <div className="profile-head">
+        <span className="avatar big">A</span>
+        <div>
+          <strong>Alex Morgan</strong>
+          <span>Your growth journey</span>
+        </div>
+      </div>
+      <ul className="profile-stats">
+        <li>
+          <strong>{store.tasks.filter((t) => t.done).length}</strong>
+          <span>Tasks done</span>
+        </li>
+        <li>
+          <strong>{habitsDone}</strong>
+          <span>Habits today</span>
+        </li>
+        <li>
+          <strong>{store.entries.length}</strong>
+          <span>Reflections</span>
+        </li>
+      </ul>
+      <div className="setting-row">
+        <span className="icon-tile tone-lilac">
+          <Icon name={store.dark ? "moon" : "sun"} size={19}/>
+        </span>
+        <div>
+          <strong>Dark theme</strong>
+          <span>Follows Material You tones</span>
+        </div>
+        <Switch checked={store.dark} onChange={setDark} label="Toggle dark theme"/>
+      </div>
+      {confirmReset ? (<div className="confirm-row">
+          <span>This replaces everything with the sample content. Your tasks, habits and reflections can't be recovered.</span>
+          <div>
+            <button className="text-btn" onClick={() => setConfirmReset(false)} onPointerDown={ripple}>
+              Cancel
+            </button>
+            <button className="text-btn danger" onClick={() => {
+                resetData();
+                setConfirmReset(false);
+                closeSheet();
+            }} onPointerDown={ripple}>
+              <Icon name="undo" size={16}/> Reset everything
+            </button>
+          </div>
+        </div>) : (<button className="text-btn danger center" onClick={() => setConfirmReset(true)} onPointerDown={ripple}>
+          <Icon name="undo" size={16}/> Reset sample data
+        </button>)}
+    </Sheet>);
+}
+function Snackbar() {
+    const { toast, dismissToast } = useBloom();
+    if (!toast)
+        return null;
+    return (<div className="snackbar" role="status">
+      <span>{toast.message}</span>
+      {toast.undo && (<button onClick={() => {
+                toast.undo?.();
+                dismissToast();
+            }}>
+          UNDO
+        </button>)}
+      <button className="snackbar-close" aria-label="Dismiss" onClick={dismissToast}>
+        <Icon name="close" size={15}/>
+      </button>
+    </div>);
+}
+function DeviceFrame() {
+    const { store, tab } = useBloom();
+    return (<div className="device-stage">
+      <div className={`device ${store.dark ? "dark" : ""}`}>
+        <StatusBar />
+        <div className="app-body">
+          <TopBar />
+          <main className="scroller" key={tab}>
+            <HomeScreenRouted />
+          </main>
+          <Fabs />
+          <NavBar />
+        </div>
+        <NewTaskSheet />
+        <NewHabitSheet />
+        <NotifsSheet />
+        <ProfileSheet />
+        <Snackbar />
+        <div className="system-nav" aria-hidden="true">
+          <span className="sys-pill"/>
+        </div>
+      </div>
+      <div className="device-caption">
+        <span>Pixel 8 Pro</span>
+        <span>ANDROID · MATERIAL 3 · INTERACTIVE PROTOTYPE</span>
+      </div>
+    </div>);
+}
+function HomeScreenRouted() {
+    const { tab } = useBloom();
+    switch (tab) {
+        case "tasks":
+            return <TasksScreen />;
+        case "habits":
+            return <HabitsScreen />;
+        case "journal":
+            return <JournalScreen />;
+        case "insights":
+            return <InsightsScreen />;
+        default:
+            return <HomeScreen />;
+    }
+}
+function App() {
+    return (<BloomProvider>
+      <DeviceFrame />
+    </BloomProvider>);
+}
+
+      ReactDOM.createRoot(document.getElementById("root")).render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>,
+      )
+    </script>
+  </body>
+</html>

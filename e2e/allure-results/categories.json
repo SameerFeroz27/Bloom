@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Assertion failures",
+    "matchedStatuses": [
+      "failed"
+    ],
+    "messageRegex": ".*(Expected:|Which:|TestFailure).*"
+  },
+  {
+    "name": "Timeout or missing element",
+    "matchedStatuses": [
+      "broken",
+      "failed"
+    ],
+    "messageRegex": ".*(TimeoutException|pumpAndSettle timed out|not found|No element).*"
+  },
+  {
+    "name": "Unexpected app error",
+    "matchedStatuses": [
+      "broken",
+      "failed"
+    ],
+    "messageRegex": ".*"
+  }
+]

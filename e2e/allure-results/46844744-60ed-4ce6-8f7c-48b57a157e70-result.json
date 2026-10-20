@@ -1,0 +1,102 @@
+{
+  "uuid": "46844744-60ed-4ce6-8f7c-48b57a157e70",
+  "historyId": "473eccb6e01c739534ca86ce33a147babd1c90ab",
+  "testCaseId": "473eccb6e01c739534ca86ce33a147babd1c90ab",
+  "fullName": "Home dashboard › Mood check-in is remembered across screens",
+  "name": "Mood check-in is remembered across screens",
+  "description": "Selects the Amazing mood on Home, verifies it is saved, and checks that the Journal opens with the same mood selected.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490212164,
+  "stop": 1792490215978,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Home dashboard"
+    },
+    {
+      "name": "feature",
+      "value": "Home dashboard"
+    },
+    {
+      "name": "story",
+      "value": "Mood check-in is remembered across screens"
+    },
+    {
+      "name": "severity",
+      "value": "normal"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.home-dashboard"
+    },
+    {
+      "name": "tag",
+      "value": "home"
+    },
+    {
+      "name": "tag",
+      "value": "mood"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Pick Amazing on Home",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490213485,
+      "stop": 1792490213855,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Mood selected",
+          "source": "46844744-60ed-4ce6-8f7c-48b57a157e70-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "The Journal starts from the same mood",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490214643,
+      "stop": 1792490215220,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Journal mood prefilled",
+          "source": "46844744-60ed-4ce6-8f7c-48b57a157e70-shot-02.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

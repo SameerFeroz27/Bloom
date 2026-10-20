@@ -1,0 +1,96 @@
+{
+  "uuid": "7ccc037e-ea91-494d-889d-5885236b760b",
+  "historyId": "8e7a3ef6c44147695852e4d141519144fcb901dd",
+  "testCaseId": "8e7a3ef6c44147695852e4d141519144fcb901dd",
+  "fullName": "Home dashboard › Completing a task advances the focus list",
+  "name": "Completing a task advances the focus list",
+  "description": "Seeds four open tasks, completes the first one on Home and verifies that the fourth task moves into the focus list.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490209176,
+  "stop": 1792490212114,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Home dashboard"
+    },
+    {
+      "name": "feature",
+      "value": "Home dashboard"
+    },
+    {
+      "name": "story",
+      "value": "Completing a task advances the focus list"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.home-dashboard"
+    },
+    {
+      "name": "tag",
+      "value": "home"
+    },
+    {
+      "name": "tag",
+      "value": "tasks"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Home shows the first three open tasks",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490210152,
+      "stop": 1792490210154,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Completing the first task pulls the next one up",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490210154,
+      "stop": 1792490211257,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Focus list advanced",
+          "source": "7ccc037e-ea91-494d-889d-5885236b760b-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

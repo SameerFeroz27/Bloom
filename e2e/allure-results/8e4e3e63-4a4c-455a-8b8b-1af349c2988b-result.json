@@ -1,0 +1,124 @@
+{
+  "uuid": "8e4e3e63-4a4c-455a-8b8b-1af349c2988b",
+  "historyId": "4b4e93847cb42a1591948377914de3092d96f7ce",
+  "testCaseId": "4b4e93847cb42a1591948377914de3092d96f7ce",
+  "fullName": "Tasks › Complete a task and update progress",
+  "name": "Complete a task and update progress",
+  "description": "Checks a task off, verifies the open/done counters, the Done filter, and that Home removes the completed task.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490146057,
+  "stop": 1792490150666,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Tasks"
+    },
+    {
+      "name": "feature",
+      "value": "Tasks"
+    },
+    {
+      "name": "story",
+      "value": "Complete a task and update progress"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.tasks"
+    },
+    {
+      "name": "tag",
+      "value": "tasks"
+    },
+    {
+      "name": "tag",
+      "value": "progress"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Check off a task",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490148035,
+      "stop": 1792490148288,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Open and done counters update",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490148288,
+      "stop": 1792490148289,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The Done filter shows the completed task",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490148289,
+      "stop": 1792490148403,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Task completed",
+          "source": "8e4e3e63-4a4c-455a-8b8b-1af349c2988b-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Home no longer shows the completed task",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490149178,
+      "stop": 1792490149886,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Home after completion",
+          "source": "8e4e3e63-4a4c-455a-8b8b-1af349c2988b-shot-02.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

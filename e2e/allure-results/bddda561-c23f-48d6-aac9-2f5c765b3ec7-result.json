@@ -1,0 +1,128 @@
+{
+  "uuid": "bddda561-c23f-48d6-aac9-2f5c765b3ec7",
+  "historyId": "1360cc1df9864ad9a62ed87383bdb35ba8d0b3f6",
+  "testCaseId": "1360cc1df9864ad9a62ed87383bdb35ba8d0b3f6",
+  "fullName": "Journal › Save a reflection with a chosen mood",
+  "name": "Save a reflection with a chosen mood",
+  "description": "Writes a reflection, selects the Great mood, saves it, verifies the entry card, then deletes and restores the reflection.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490180805,
+  "stop": 1792490192540,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Journal"
+    },
+    {
+      "name": "feature",
+      "value": "Journal"
+    },
+    {
+      "name": "story",
+      "value": "Save a reflection with a chosen mood"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.journal"
+    },
+    {
+      "name": "tag",
+      "value": "journal"
+    },
+    {
+      "name": "tag",
+      "value": "mood"
+    },
+    {
+      "name": "tag",
+      "value": "crud"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Write a reflection",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490182687,
+      "stop": 1792490183690,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Choose a mood and save the reflection",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490183690,
+      "stop": 1792490185061,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The reflection is stored with its mood",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490185061,
+      "stop": 1792490189423,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Journal reflection",
+          "source": "bddda561-c23f-48d6-aac9-2f5c765b3ec7-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Delete the reflection and undo it",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490190200,
+      "stop": 1792490191789,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Reflection restored",
+          "source": "bddda561-c23f-48d6-aac9-2f5c765b3ec7-shot-02.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

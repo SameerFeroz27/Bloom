@@ -1,0 +1,92 @@
+{
+  "uuid": "862e40fe-1cb3-4b53-a1f2-510e0ccd82c0",
+  "historyId": "f002d9b004f1860104d5d77eb68799eec14b4c4e",
+  "testCaseId": "f002d9b004f1860104d5d77eb68799eec14b4c4e",
+  "fullName": "Profile & preferences › Notifications summarize the day",
+  "name": "Notifications summarize the day",
+  "description": "Opens the notification sheet and verifies its task, streak and habit summaries, then closes it with Got it.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490205964,
+  "stop": 1792490209119,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Profile & preferences"
+    },
+    {
+      "name": "feature",
+      "value": "Profile & preferences"
+    },
+    {
+      "name": "story",
+      "value": "Notifications summarize the day"
+    },
+    {
+      "name": "severity",
+      "value": "normal"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.profile-preferences"
+    },
+    {
+      "name": "tag",
+      "value": "notifications"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Open notifications",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490207286,
+      "stop": 1792490207805,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Daily summary",
+          "source": "862e40fe-1cb3-4b53-a1f2-510e0ccd82c0-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Close the sheet",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490208627,
+      "stop": 1792490209119,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

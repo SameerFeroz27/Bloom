@@ -1,0 +1,96 @@
+{
+  "uuid": "e2cbd070-4b59-4136-852f-ab0f6ad0d9be",
+  "historyId": "e6145528cc21ee3cd956820451bd51ebcdb322e1",
+  "testCaseId": "e6145528cc21ee3cd956820451bd51ebcdb322e1",
+  "fullName": "Tasks › Delete a task and undo it",
+  "name": "Delete a task and undo it",
+  "description": "Deletes a task, checks the undo snackbar, and restores the task with the UNDO action.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490155714,
+  "stop": 1792490159542,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Tasks"
+    },
+    {
+      "name": "feature",
+      "value": "Tasks"
+    },
+    {
+      "name": "story",
+      "value": "Delete a task and undo it"
+    },
+    {
+      "name": "severity",
+      "value": "normal"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.tasks"
+    },
+    {
+      "name": "tag",
+      "value": "tasks"
+    },
+    {
+      "name": "tag",
+      "value": "undo"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Delete a task",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490157622,
+      "stop": 1792490158206,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Undo restores the task",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490158206,
+      "stop": 1792490158721,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Task restored",
+          "source": "e2cbd070-4b59-4136-852f-ab0f6ad0d9be-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

@@ -1,0 +1,119 @@
+{
+  "uuid": "5742ee32-66f3-4d00-b615-dda6ee75cf99",
+  "historyId": "db019a284ecedf85f33ffccbac6f4f00b355a3cf",
+  "testCaseId": "db019a284ecedf85f33ffccbac6f4f00b355a3cf",
+  "fullName": "Profile & preferences › Profile shows stats and the dark theme applies",
+  "name": "Profile shows stats and the dark theme applies",
+  "description": "Opens the profile sheet, verifies the user stats, switches to the dark theme and checks that the dashboard renders in dark mode.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490195694,
+  "stop": 1792490201777,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Profile & preferences"
+    },
+    {
+      "name": "feature",
+      "value": "Profile & preferences"
+    },
+    {
+      "name": "story",
+      "value": "Profile shows stats and the dark theme applies"
+    },
+    {
+      "name": "severity",
+      "value": "normal"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.profile-preferences"
+    },
+    {
+      "name": "tag",
+      "value": "profile"
+    },
+    {
+      "name": "tag",
+      "value": "theme"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Open the profile sheet",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490197005,
+      "stop": 1792490197509,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Profile light",
+          "source": "5742ee32-66f3-4d00-b615-dda6ee75cf99-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Switch to the dark theme",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490198475,
+      "stop": 1792490199740,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Profile dark",
+          "source": "5742ee32-66f3-4d00-b615-dda6ee75cf99-shot-02.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "The dark theme reaches the dashboard",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490200657,
+      "stop": 1792490200920,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Home dark",
+          "source": "5742ee32-66f3-4d00-b615-dda6ee75cf99-shot-03.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

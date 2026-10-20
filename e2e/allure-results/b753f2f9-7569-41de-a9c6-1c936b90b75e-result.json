@@ -1,0 +1,153 @@
+{
+  "uuid": "b753f2f9-7569-41de-a9c6-1c936b90b75e",
+  "historyId": "e48ce46b219107dec0621ca0cd568ad89451a876",
+  "testCaseId": "e48ce46b219107dec0621ca0cd568ad89451a876",
+  "fullName": "App shell & navigation › Bottom navigation opens every section",
+  "name": "Bottom navigation opens every section",
+  "description": "Walks through all five tabs and verifies each screen renders its headline and primary content.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490125053,
+  "stop": 1792490134207,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "App shell & navigation"
+    },
+    {
+      "name": "feature",
+      "value": "App shell & navigation"
+    },
+    {
+      "name": "story",
+      "value": "Bottom navigation opens every section"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.app-shell-navigation"
+    },
+    {
+      "name": "tag",
+      "value": "smoke"
+    },
+    {
+      "name": "tag",
+      "value": "navigation"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Tasks section",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490126386,
+      "stop": 1792490127473,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Tasks section",
+          "source": "b753f2f9-7569-41de-a9c6-1c936b90b75e-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Habits section",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490128365,
+      "stop": 1792490128836,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Habits section",
+          "source": "b753f2f9-7569-41de-a9c6-1c936b90b75e-shot-02.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Journal section",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490129610,
+      "stop": 1792490129943,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Journal section",
+          "source": "b753f2f9-7569-41de-a9c6-1c936b90b75e-shot-03.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Insights section",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490130762,
+      "stop": 1792490131450,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Insights section",
+          "source": "b753f2f9-7569-41de-a9c6-1c936b90b75e-shot-04.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Back to Home",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490132646,
+      "stop": 1792490133425,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Back home",
+          "source": "b753f2f9-7569-41de-a9c6-1c936b90b75e-shot-05.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

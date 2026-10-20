@@ -1,0 +1,113 @@
+{
+  "uuid": "409a630e-4747-418e-837b-230150e8e82c",
+  "historyId": "710c2f93516ee186076f1d8f664ddfb87f8ac641",
+  "testCaseId": "710c2f93516ee186076f1d8f664ddfb87f8ac641",
+  "fullName": "Habits › Delete a habit with undo",
+  "name": "Delete a habit with undo",
+  "description": "Expands the strongest habit to inspect its streak, deletes it, and restores it from the undo snackbar.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490175538,
+  "stop": 1792490180751,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Habits"
+    },
+    {
+      "name": "feature",
+      "value": "Habits"
+    },
+    {
+      "name": "story",
+      "value": "Delete a habit with undo"
+    },
+    {
+      "name": "severity",
+      "value": "normal"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.habits"
+    },
+    {
+      "name": "tag",
+      "value": "habits"
+    },
+    {
+      "name": "tag",
+      "value": "undo"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Expand the strongest habit",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490177403,
+      "stop": 1792490177521,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Habit details",
+          "source": "409a630e-4747-418e-837b-230150e8e82c-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Delete the habit",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490178341,
+      "stop": 1792490179487,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Undo restores the habit",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490179487,
+      "stop": 1792490179969,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Habit restored",
+          "source": "409a630e-4747-418e-837b-230150e8e82c-shot-02.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

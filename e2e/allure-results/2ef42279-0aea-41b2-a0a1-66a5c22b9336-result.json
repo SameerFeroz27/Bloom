@@ -1,0 +1,96 @@
+{
+  "uuid": "2ef42279-0aea-41b2-a0a1-66a5c22b9336",
+  "historyId": "534afa9ff782c6f7c0834baa235228984c83b866",
+  "testCaseId": "534afa9ff782c6f7c0834baa235228984c83b866",
+  "fullName": "Profile & preferences › Load sample data loads the demo content",
+  "name": "Load sample data loads the demo content",
+  "description": "Starts with an empty store, opens Profile, explicitly loads the sample content and verifies the demo tasks and habits appear.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490201850,
+  "stop": 1792490205913,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Profile & preferences"
+    },
+    {
+      "name": "feature",
+      "value": "Profile & preferences"
+    },
+    {
+      "name": "story",
+      "value": "Load sample data loads the demo content"
+    },
+    {
+      "name": "severity",
+      "value": "minor"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.profile-preferences"
+    },
+    {
+      "name": "tag",
+      "value": "profile"
+    },
+    {
+      "name": "tag",
+      "value": "sample-data"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Open the sample-data confirmation",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490202903,
+      "stop": 1792490203606,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Confirm loading the sample content",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490203606,
+      "stop": 1792490205024,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Sample data loaded",
+          "source": "2ef42279-0aea-41b2-a0a1-66a5c22b9336-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

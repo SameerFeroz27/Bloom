@@ -1,0 +1,135 @@
+{
+  "uuid": "c8dd33c7-8645-49d4-84df-19f1b6a5da1b",
+  "historyId": "fdc5b293bf4572adee17caac95478aaf7685a51b",
+  "testCaseId": "fdc5b293bf4572adee17caac95478aaf7685a51b",
+  "fullName": "Habits › Create a breaking habit",
+  "name": "Create a breaking habit",
+  "description": "Creates a break habit with a custom icon, verifies the BREAK tag, and checks that the Build/Break filters separate habits correctly.",
+  "status": "passed",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false
+  },
+  "stage": "finished",
+  "start": 1792490159614,
+  "stop": 1792490170730,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "Habits"
+    },
+    {
+      "name": "feature",
+      "value": "Habits"
+    },
+    {
+      "name": "story",
+      "value": "Create a breaking habit"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "owner",
+      "value": "QA"
+    },
+    {
+      "name": "language",
+      "value": "dart"
+    },
+    {
+      "name": "framework",
+      "value": "Flutter integration_test"
+    },
+    {
+      "name": "host",
+      "value": "Pixel 7a emulator"
+    },
+    {
+      "name": "package",
+      "value": "bloom.e2e.habits"
+    },
+    {
+      "name": "tag",
+      "value": "crud"
+    },
+    {
+      "name": "tag",
+      "value": "habits"
+    }
+  ],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "Open the new habit sheet",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490161445,
+      "stop": 1792490162018,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Choose a habit to break and describe it",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490162018,
+      "stop": 1792490163023,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "Pick an icon and create the habit",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490163023,
+      "stop": 1792490164142,
+      "steps": [],
+      "attachments": [],
+      "parameters": []
+    },
+    {
+      "name": "The habit appears with its details and BREAK tag",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490164142,
+      "stop": 1792490168522,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Habit created",
+          "source": "c8dd33c7-8645-49d4-84df-19f1b6a5da1b-shot-01.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "name": "Filters separate build and break habits",
+      "status": "passed",
+      "statusDetails": {},
+      "stage": "finished",
+      "start": 1792490169339,
+      "stop": 1792490169938,
+      "steps": [],
+      "attachments": [
+        {
+          "name": "Screenshot — Habit filters",
+          "source": "c8dd33c7-8645-49d4-84df-19f1b6a5da1b-shot-02.png",
+          "type": "image/png"
+        }
+      ],
+      "parameters": []
+    }
+  ],
+  "attachments": [],
+  "links": []
+}

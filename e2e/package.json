@@ -1,0 +1,21 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:native": "cd ../flutter_app && flutter drive --driver=test_driver/allure_driver.dart --target=integration_test/app_test.dart -d emulator-5554 --no-dds",
+    "allure:build": "node tools/build-allure.mjs && npx allure generate allure-results -o allure-report --clean --report-name \"bloom. native Android E2E\"",
+    "report": "npm run test:native && npm run allure:build",
+    "serve:report": "python -m http.server 4040 --directory allure-report",
+    "logo": "node tools/render-logo.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "allure-commandline": "^2.46.1",
+    "sharp": "^0.35.5"
+  }
+}

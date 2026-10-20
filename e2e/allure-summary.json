@@ -1,0 +1,165 @@
+{
+  "generatedAt": "2026-10-20T09:58:55.785Z",
+  "total": 18,
+  "passed": 18,
+  "failed": 0,
+  "broken": 0,
+  "skipped": 0,
+  "screenshots": 32,
+  "suites": {
+    "App shell & navigation": 2,
+    "Tasks": 4,
+    "Habits": 3,
+    "Journal": 1,
+    "Insights": 1,
+    "Profile & preferences": 3,
+    "Home dashboard": 3,
+    "First run": 1
+  },
+  "tests": [
+    {
+      "suite": "App shell & navigation",
+      "name": "Home shows the branded dashboard",
+      "status": "passed",
+      "durationMs": 4232,
+      "steps": 2,
+      "screenshots": 1
+    },
+    {
+      "suite": "App shell & navigation",
+      "name": "Bottom navigation opens every section",
+      "status": "passed",
+      "durationMs": 9153,
+      "steps": 5,
+      "screenshots": 5
+    },
+    {
+      "suite": "Tasks",
+      "name": "Create a task from the add button",
+      "status": "passed",
+      "durationMs": 11707,
+      "steps": 4,
+      "screenshots": 1
+    },
+    {
+      "suite": "Tasks",
+      "name": "Complete a task and update progress",
+      "status": "passed",
+      "durationMs": 4608,
+      "steps": 4,
+      "screenshots": 2
+    },
+    {
+      "suite": "Tasks",
+      "name": "Search and filter tasks",
+      "status": "passed",
+      "durationMs": 4910,
+      "steps": 4,
+      "screenshots": 2
+    },
+    {
+      "suite": "Tasks",
+      "name": "Delete a task and undo it",
+      "status": "passed",
+      "durationMs": 3827,
+      "steps": 2,
+      "screenshots": 1
+    },
+    {
+      "suite": "Habits",
+      "name": "Create a breaking habit",
+      "status": "passed",
+      "durationMs": 11116,
+      "steps": 5,
+      "screenshots": 2
+    },
+    {
+      "suite": "Habits",
+      "name": "Check off a habit and keep the streak",
+      "status": "passed",
+      "durationMs": 4696,
+      "steps": 3,
+      "screenshots": 2
+    },
+    {
+      "suite": "Habits",
+      "name": "Delete a habit with undo",
+      "status": "passed",
+      "durationMs": 5212,
+      "steps": 3,
+      "screenshots": 2
+    },
+    {
+      "suite": "Journal",
+      "name": "Save a reflection with a chosen mood",
+      "status": "passed",
+      "durationMs": 11734,
+      "steps": 4,
+      "screenshots": 2
+    },
+    {
+      "suite": "Insights",
+      "name": "Insights summarize activity and mood",
+      "status": "passed",
+      "durationMs": 2986,
+      "steps": 3,
+      "screenshots": 1
+    },
+    {
+      "suite": "Profile & preferences",
+      "name": "Profile shows stats and the dark theme applies",
+      "status": "passed",
+      "durationMs": 6082,
+      "steps": 3,
+      "screenshots": 3
+    },
+    {
+      "suite": "Profile & preferences",
+      "name": "Load sample data loads the demo content",
+      "status": "passed",
+      "durationMs": 4063,
+      "steps": 2,
+      "screenshots": 1
+    },
+    {
+      "suite": "Profile & preferences",
+      "name": "Notifications summarize the day",
+      "status": "passed",
+      "durationMs": 3155,
+      "steps": 2,
+      "screenshots": 1
+    },
+    {
+      "suite": "Home dashboard",
+      "name": "Completing a task advances the focus list",
+      "status": "passed",
+      "durationMs": 2937,
+      "steps": 2,
+      "screenshots": 1
+    },
+    {
+      "suite": "Home dashboard",
+      "name": "Mood check-in is remembered across screens",
+      "status": "passed",
+      "durationMs": 3813,
+      "steps": 2,
+      "screenshots": 2
+    },
+    {
+      "suite": "Home dashboard",
+      "name": "Empty states celebrate a finished day",
+      "status": "passed",
+      "durationMs": 2132,
+      "steps": 2,
+      "screenshots": 1
+    },
+    {
+      "suite": "First run",
+      "name": "Fresh install starts with a welcoming empty state",
+      "status": "passed",
+      "durationMs": 6097,
+      "steps": 5,
+      "screenshots": 2
+    }
+  ]
+}
